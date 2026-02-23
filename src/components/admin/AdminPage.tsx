@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { UploadZone } from "@/components/admin/UploadZone";
 
 type DocItem = { id: string; filename: string; uploadedAt: string };
 
@@ -73,9 +74,15 @@ export function AdminPage() {
       <main className="max-w-2xl mx-auto px-6 py-8 flex flex-col gap-10">
         <section>
           <h2 className="text-base font-semibold mb-4">Document Upload</h2>
-          <p className="text-sm text-muted-foreground">
-            Upload zone coming soon.
-          </p>
+          <UploadZone
+            onUploadSuccess={(filename) => {
+              const today = new Date().toISOString().split("T")[0];
+              setDocs((prev) => [
+                ...prev,
+                { id: crypto.randomUUID(), filename, uploadedAt: today },
+              ]);
+            }}
+          />
         </section>
         <section>
           <h2 className="text-base font-semibold mb-4">Active Documents</h2>
