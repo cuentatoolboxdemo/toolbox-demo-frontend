@@ -73,8 +73,9 @@ completed: 2026-02-23
 Each task was committed atomically:
 
 1. **Task 1: Implement webhook POST with loading state and response rendering** - `d899a11` (feat)
+2. **Task 2: Checkpoint — human-verify (approved)** - no code commit; human confirmed all Phase 2 criteria met
 
-**Plan metadata:** pending final commit (docs)
+**Plan metadata:** `aee10f2` (docs: complete webhook POST plan)
 
 ## Files Created/Modified
 - `src/components/chat/ChatInterface.tsx` - Full handleSend with async fetch, history, systemPrompt, error handling
@@ -91,7 +92,7 @@ None - plan executed exactly as written.
 
 ## Issues Encountered
 
-None.
+The "Thinking..." loading bubble appeared only briefly (under half a second) during human verification because the placeholder webhook URL returned an error response instantly. Human confirmed this is acceptable — the bubble will be clearly visible with a real webhook that has processing latency.
 
 ## User Setup Required
 
@@ -107,3 +108,11 @@ The webhook URL (NEXT_PUBLIC_CHAT_WEBHOOK_URL) must be set in .env.local before 
 ---
 *Phase: 02-chat-interface*
 *Completed: 2026-02-23*
+
+## Self-Check: PASSED
+
+- FOUND: src/components/chat/ChatInterface.tsx
+- FOUND: src/components/chat/MessageList.tsx
+- FOUND: .planning/phases/02-chat-interface/02-03-SUMMARY.md
+- FOUND commit: d899a11 (feat(02-03): implement webhook POST, loading state, and assistant reply rendering)
+- FOUND commit: aee10f2 (docs(02-03): complete webhook POST plan)

@@ -13,7 +13,7 @@ Three phases deliver a complete demo: stand up the project scaffolding and PWA p
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffolded, PWA configured, environment wired up (completed 2026-02-23)
-- [ ] **Phase 2: Chat Interface** - Employees can ask questions and receive AI answers at `/[tenant]`
+- [x] **Phase 2: Chat Interface** - Employees can ask questions and receive AI answers at `/[tenant]` (completed 2026-02-23)
 - [ ] **Phase 3: Admin Interface** - Admin can upload documents and manage the system prompt at `/admin`
 
 ## Phase Details
@@ -48,8 +48,8 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Tenant routing, welcome heading per tenant, and unknown-slug 404 fallback
-- [ ] 02-02-PLAN.md — iMessage-style chat UI shell with MessageList, MessageInput, and session message state
+- [x] 02-01-PLAN.md — Tenant routing, welcome heading per tenant, and unknown-slug 404 fallback
+- [x] 02-02-PLAN.md — iMessage-style chat UI shell with MessageList, MessageInput, and session message state
 - [x] 02-03-PLAN.md — Webhook POST, loading indicator, AI response rendering, and human-verify checkpoint
 
 ### Phase 3: Admin Interface
@@ -77,5 +77,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete    | 2026-02-23 |
-| 2. Chat Interface | 3/3 | Awaiting checkpoint verification | |
+| 2. Chat Interface | 3/3 | Complete | 2026-02-23 |
 | 3. Admin Interface | 0/3 | Not started | - |
