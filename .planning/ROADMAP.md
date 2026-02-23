@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffolded, PWA configured, environment wired up (completed 2026-02-23)
 - [x] **Phase 2: Chat Interface** - Employees can ask questions and receive AI answers at `/[tenant]` (completed 2026-02-23)
-- [ ] **Phase 3: Admin Interface** - Admin can upload documents and manage the system prompt at `/admin`
+- [x] **Phase 3: Admin Interface** - Admin can upload documents and manage the system prompt at `/admin` (completed 2026-02-23)
 
 ## Phase Details
 
@@ -65,9 +65,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Password gate (sessionStorage), admin layout, and static Active Documents list
-- [ ] 03-02-PLAN.md — Drag-and-drop UploadZone with spinner, FormData POST, and document list append
-- [ ] 03-03-PLAN.md — System prompt textarea with localStorage persistence and human-verify checkpoint
+- [x] 03-01-PLAN.md — Password gate (sessionStorage), admin layout, and static Active Documents list
+- [x] 03-02-PLAN.md — Drag-and-drop UploadZone with spinner, FormData POST, and document list append
+- [x] 03-03-PLAN.md — System prompt textarea with localStorage persistence and human-verify checkpoint
 
 ## Progress
 
@@ -78,4 +78,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete    | 2026-02-23 |
 | 2. Chat Interface | 3/3 | Complete    | 2026-02-23 |
-| 3. Admin Interface | 2/3 | In Progress|  |
+| 3. Admin Interface | 3/3 | Complete    | 2026-02-23 |

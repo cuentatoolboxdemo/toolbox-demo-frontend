@@ -22,7 +22,7 @@
 - [x] **ADMIN-03**: Admin sees a drag-and-drop zone for PDF uploads
 - [x] **ADMIN-04**: Dropping a PDF triggers a progress spinner and POSTs the file via FormData to the n8n ingest URL
 - [x] **ADMIN-05**: Admin sees a static list of 3–4 "Active Documents" with a green "Active" badge
-- [ ] **ADMIN-06**: Admin can edit a system prompt in a textarea; value is saved to localStorage on change
+- [x] **ADMIN-06**: Admin can edit a system prompt in a textarea; value is saved to localStorage on change
 
 ### PWA
 
@@ -91,7 +91,7 @@
 | ADMIN-03 | Phase 3 | Complete |
 | ADMIN-04 | Phase 3 | Complete |
 | ADMIN-05 | Phase 3 | Complete |
-| ADMIN-06 | Phase 3 | Pending |
+| ADMIN-06 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 20 total
