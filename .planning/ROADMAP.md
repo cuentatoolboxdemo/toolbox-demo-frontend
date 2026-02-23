@@ -45,12 +45,12 @@ Plans:
   3. A loading indicator appears while the webhook is processing and disappears when the reply arrives
   4. The AI reply appears in the chat thread below the user's message
   5. Navigating to an unknown tenant slug (e.g., `/foobar`) shows a graceful fallback rather than a crash
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Build tenant routing, welcome message display, and iMessage-style chat UI layout
-- [ ] 02-02: Implement message sending, loading state, webhook POST with full payload schema, and response rendering
-- [ ] 02-03: Add unknown-tenant fallback and session history management
+- [ ] 02-01-PLAN.md — Tenant routing, welcome heading per tenant, and unknown-slug 404 fallback
+- [ ] 02-02-PLAN.md — iMessage-style chat UI shell with MessageList, MessageInput, and session message state
+- [ ] 02-03-PLAN.md — Webhook POST, loading indicator, AI response rendering, and human-verify checkpoint
 
 ### Phase 3: Admin Interface
 **Goal**: Admin can log in, upload PDFs, and set a system prompt that flows into every chat request
