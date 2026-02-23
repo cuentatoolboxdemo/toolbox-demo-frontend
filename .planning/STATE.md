@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-23)
 
 **Core value:** Employees get instant, context-aware answers from company documents through a familiar chat UI — installable on their phone like any other app.
-**Current focus:** Phase 3 — Admin Panel (next phase)
+**Current focus:** Phase 3 — Admin Panel (in progress)
 
 ## Current Position
 
 Phase: 3 of 3 (Admin Panel)
-Plan: 0 of ? in current phase
-Status: Ready — Phase 2 complete, ready to begin Phase 3
-Last activity: 2026-02-23 — Completed 02-03-PLAN.md (webhook POST with loading state, assistant reply rendering, and loading bubble; human verified end-to-end)
+Plan: 1 of 3 in current phase
+Status: In progress — Phase 3, Plan 01 complete
+Last activity: 2026-02-23 — Completed 03-01-PLAN.md (password-gated /admin with sessionStorage auth, static document list, admin shell)
 
-Progress: [███████░░░] 70%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 6min
-- Total execution time: 36min
+- Total plans completed: 7
+- Average duration: 5min
+- Total execution time: 37min
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: [███████░░░] 70%
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 31min | 10min |
 | 02-chat-interface | 3/3 | 5min | 2min |
+| 03-admin-interface | 1/3 | 1min | 1min |
 
 **Recent Trend:**
-- Last 5 plans: 2min
+- Last 5 plans: 1min
 - Trend: improving
 
 *Updated after each plan completion*
@@ -62,6 +63,9 @@ Recent decisions affecting current work:
 - [Phase 02-chat-interface]: History snapshot taken before setMessages — captures prior turns only, current question excluded from history array
 - [Phase 02-chat-interface]: response.json() with fallback to response.text() — handles both { answer } and plain-text webhook responses
 - [Phase 02-chat-interface]: isLoading suppresses empty-state prompt — avoids flicker when first message is in-flight
+- [Phase 03-admin-interface]: sessionStorage used for auth persistence — no server-side session needed for demo-level admin gate
+- [Phase 03-admin-interface]: Lazy useState initializer with typeof window check — required for SSR safety in Next.js App Router
+- [Phase 03-admin-interface]: docs and setDocs kept at AdminPage level — allows Plan 02 to inject uploaded docs via props/callbacks
 
 ### Pending Todos
 
@@ -74,5 +78,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-03-PLAN.md — Phase 2 fully complete, human approved checkpoint, ready to start Phase 3
+Stopped at: Completed 03-01-PLAN.md — /admin login gate, admin shell, static doc list with Active badges
 Resume file: None

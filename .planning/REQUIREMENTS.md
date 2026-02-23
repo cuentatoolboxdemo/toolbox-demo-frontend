@@ -17,11 +17,11 @@
 
 ### Admin Interface
 
-- [ ] **ADMIN-01**: Admin navigates to `/admin` and is prompted for a password
-- [ ] **ADMIN-02**: Correct password ("demo123") grants access; wrong password shows an error
+- [x] **ADMIN-01**: Admin navigates to `/admin` and is prompted for a password
+- [x] **ADMIN-02**: Correct password ("demo123") grants access; wrong password shows an error
 - [ ] **ADMIN-03**: Admin sees a drag-and-drop zone for PDF uploads
 - [ ] **ADMIN-04**: Dropping a PDF triggers a progress spinner and POSTs the file via FormData to the n8n ingest URL
-- [ ] **ADMIN-05**: Admin sees a static list of 3–4 "Active Documents" with a green "Active" badge
+- [x] **ADMIN-05**: Admin sees a static list of 3–4 "Active Documents" with a green "Active" badge
 - [ ] **ADMIN-06**: Admin can edit a system prompt in a textarea; value is saved to localStorage on change
 
 ### PWA
@@ -86,11 +86,11 @@
 | CHAT-06 | Phase 2 | Complete |
 | CHAT-07 | Phase 2 | Complete |
 | INFRA-02 | Phase 2 | Complete |
-| ADMIN-01 | Phase 3 | Pending |
-| ADMIN-02 | Phase 3 | Pending |
+| ADMIN-01 | Phase 3 | Complete |
+| ADMIN-02 | Phase 3 | Complete |
 | ADMIN-03 | Phase 3 | Pending |
 | ADMIN-04 | Phase 3 | Pending |
-| ADMIN-05 | Phase 3 | Pending |
+| ADMIN-05 | Phase 3 | Complete |
 | ADMIN-06 | Phase 3 | Pending |
 
 **Coverage:**
