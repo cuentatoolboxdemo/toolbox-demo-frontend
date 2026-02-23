@@ -23,7 +23,7 @@ export function UploadZone({ onUploadSuccess }: UploadZoneProps) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch(process.env.NEXT_PUBLIC_INGEST_WEBHOOK_URL!, {
+      const res = await fetch("/api/ingest", {
         method: "POST",
         body: formData,
       });
@@ -96,9 +96,8 @@ export function UploadZone({ onUploadSuccess }: UploadZoneProps) {
       </div>
       {statusMsg && (
         <p
-          className={`text-sm mt-3 ${
-            statusMsg.type === "success" ? "text-green-600" : "text-red-500"
-          }`}
+          className={`text-sm mt-3 ${statusMsg.type === "success" ? "text-green-600" : "text-red-500"
+            }`}
         >
           {statusMsg.text}
         </p>

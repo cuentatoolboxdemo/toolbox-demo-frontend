@@ -21,31 +21,24 @@ export function ChatInterface({ tenant }: ChatInterfaceProps) {
       timestamp: new Date(),
     };
 
-    // Build history from current messages BEFORE appending userMessage
-    const history = messages.map(({ role, content }) => ({ role, content }));
+    // Build history from current messages BEFORE appending userMessage, filtering out error messages
+    const history = messages
+      .filter((msg) => !msg.content.startsWith("Sorry, something went wrong"))
+      .map(({ role, content }) => ({ role, content }));
 
     setMessages((prev) => [...prev, userMessage]);
     setIsLoading(true);
 
     try {
-      const systemPrompt =
-        typeof window !== "undefined"
-          ? (localStorage.getItem("systemPrompt") ?? "")
-          : "";
-
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_CHAT_WEBHOOK_URL!,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            question: text,
-            tenant: tenant.slug,
-            history,
-            systemPrompt,
-          }),
-        }
-      );
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: text,
+          tenant: tenant.slug,
+          history,
+        }),
+      });
 
       let answer: string;
       const json = await response.json().catch(() => null);

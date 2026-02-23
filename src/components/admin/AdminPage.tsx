@@ -14,31 +14,40 @@ const INITIAL_DOCS: DocItem[] = [
   { id: "3", filename: "onboarding-guide.pdf", uploadedAt: "2026-02-01" },
 ];
 
-export function AdminPage() {
-  const [authed, setAuthed] = useState(false);
+export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
+  const [authed, setAuthed] = useState(initialAuthed);
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    if (sessionStorage.getItem("adminAuth") === "true") {
-      setAuthed(true);
-    }
-  }, []);
   const [error, setError] = useState("");
   const [docs, setDocs] = useState<DocItem[]>(INITIAL_DOCS);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleLogin(e: React.FormEvent) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    if (password === "demo123") {
-      sessionStorage.setItem("adminAuth", "true");
-      setAuthed(true);
-      setError("");
-    } else {
-      setError("Invalid password");
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setAuthed(true);
+      } else {
+        setError(data.error || "Invalid password");
+      }
+    } catch {
+      setError("Network error");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
-  function handleLogout() {
-    sessionStorage.removeItem("adminAuth");
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
     setAuthed(false);
     setPassword("");
     setError("");
@@ -57,8 +66,8 @@ export function AdminPage() {
               onChange={(e) => setPassword(e.target.value)}
               autoFocus
             />
-            <Button type="submit" className="w-full">
-              Sign In
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in..." : "Sign In"}
             </Button>
             {error && <p className="text-sm text-red-500">{error}</p>}
           </form>

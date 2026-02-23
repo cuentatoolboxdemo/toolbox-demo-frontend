@@ -39,6 +39,9 @@ Progress: [██████████] 100%
 
 ## Accumulated Context
 
+### Roadmap Evolution
+- Phase 4 added: Consolidación y Seguridad
+
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.

@@ -24,3 +24,12 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 | 1. Foundation | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 2. Chat Interface | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 3. Admin Interface | v1.0 | 3/3 | Complete | 2026-02-23 |
+
+### Phase 4: Consolidación y Seguridad
+
+**Goal:** [To be planned]
+**Depends on:** Phase 3
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 4 to break down)
