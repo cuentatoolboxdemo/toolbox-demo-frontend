@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 ## Current Position
 
 Phase: 3 of 3 (Admin Panel)
-Plan: 1 of 3 in current phase
-Status: In progress — Phase 3, Plan 01 complete
-Last activity: 2026-02-23 — Completed 03-01-PLAN.md (password-gated /admin with sessionStorage auth, static document list, admin shell)
+Plan: 2 of 3 in current phase
+Status: In progress — Phase 3, Plan 02 complete
+Last activity: 2026-02-23 — Completed 03-02-PLAN.md (drag-and-drop PDF upload zone with FormData POST, spinner, and setDocs callback)
 
-Progress: [████████░░] 80%
+Progress: [█████████░] 87%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 5min
-- Total execution time: 37min
+- Total execution time: 38min
 
 **By Phase:**
 
@@ -29,7 +29,7 @@ Progress: [████████░░] 80%
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 31min | 10min |
 | 02-chat-interface | 3/3 | 5min | 2min |
-| 03-admin-interface | 1/3 | 1min | 1min |
+| 03-admin-interface | 2/3 | 2min | 1min |
 
 **Recent Trend:**
 - Last 5 plans: 1min
@@ -66,6 +66,8 @@ Recent decisions affecting current work:
 - [Phase 03-admin-interface]: sessionStorage used for auth persistence — no server-side session needed for demo-level admin gate
 - [Phase 03-admin-interface]: Lazy useState initializer with typeof window check — required for SSR safety in Next.js App Router
 - [Phase 03-admin-interface]: docs and setDocs kept at AdminPage level — allows Plan 02 to inject uploaded docs via props/callbacks
+- [Phase 03-admin-interface]: UploadZone as standalone component with onUploadSuccess prop — keeps AdminPage as state owner, UploadZone as pure uploader
+- [Phase 03-admin-interface]: getDropzoneClassName() helper consolidates three conditional class sets (uploading, dragging, default) into readable function
 
 ### Pending Todos
 
@@ -78,5 +80,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 03-01-PLAN.md — /admin login gate, admin shell, static doc list with Active badges
+Stopped at: Completed 03-02-PLAN.md — drag-and-drop UploadZone wired into AdminPage, FormData POST to ingest webhook
 Resume file: None
