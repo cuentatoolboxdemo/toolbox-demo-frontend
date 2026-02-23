@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UploadZone } from "@/components/admin/UploadZone";
@@ -15,11 +15,14 @@ const INITIAL_DOCS: DocItem[] = [
 ];
 
 export function AdminPage() {
-  const [authed, setAuthed] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return sessionStorage.getItem("adminAuth") === "true";
-  });
+  const [authed, setAuthed] = useState(false);
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("adminAuth") === "true") {
+      setAuthed(true);
+    }
+  }, []);
   const [error, setError] = useState("");
   const [docs, setDocs] = useState<DocItem[]>(INITIAL_DOCS);
 

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function SystemPromptEditor() {
-  const [value, setValue] = useState<string>(() => {
-    if (typeof window === "undefined") return "";
-    return localStorage.getItem("systemPrompt") ?? "";
-  });
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("systemPrompt");
+    if (saved) setValue(saved);
+  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const newValue = e.target.value;
