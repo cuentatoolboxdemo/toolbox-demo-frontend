@@ -26,10 +26,10 @@
 
 ### PWA
 
-- [ ] **PWA-01**: App has a valid `manifest.json` (name: "Toolbox AI", display: standalone, theme color set)
-- [ ] **PWA-02**: Necessary `<meta>` tags are present for iOS and Android "Add to Home Screen" prompt
-- [ ] **PWA-03**: App has placeholder icons at 192×192 and 512×512 referenced in the manifest
-- [ ] **PWA-04**: App is installable — browser install prompt fires on supported devices
+- [x] **PWA-01**: App has a valid `manifest.json` (name: "Toolbox AI", display: standalone, theme color set)
+- [x] **PWA-02**: Necessary `<meta>` tags are present for iOS and Android "Add to Home Screen" prompt
+- [x] **PWA-03**: App has placeholder icons at 192×192 and 512×512 referenced in the manifest
+- [x] **PWA-04**: App is installable — browser install prompt fires on supported devices
 
 ### Infrastructure
 
@@ -73,10 +73,10 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | INFRA-03 | Phase 1 | Complete |
-| PWA-01 | Phase 1 | Pending |
-| PWA-02 | Phase 1 | Pending |
-| PWA-03 | Phase 1 | Pending |
-| PWA-04 | Phase 1 | Pending |
+| PWA-01 | Phase 1 | Complete |
+| PWA-02 | Phase 1 | Complete |
+| PWA-03 | Phase 1 | Complete |
+| PWA-04 | Phase 1 | Complete |
 | INFRA-01 | Phase 1 | Complete |
 | CHAT-01 | Phase 2 | Pending |
 | CHAT-02 | Phase 2 | Pending |

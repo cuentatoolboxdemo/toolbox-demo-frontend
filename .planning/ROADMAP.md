@@ -12,7 +12,7 @@ Three phases deliver a complete demo: stand up the project scaffolding and PWA p
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffolded, PWA configured, environment wired up
+- [x] **Phase 1: Foundation** - Project scaffolded, PWA configured, environment wired up (completed 2026-02-23)
 - [ ] **Phase 2: Chat Interface** - Employees can ask questions and receive AI answers at `/[tenant]`
 - [ ] **Phase 3: Admin Interface** - Admin can upload documents and manage the system prompt at `/admin`
 
@@ -76,6 +76,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/3 | In Progress | - |
+| 1. Foundation | 3/3 | Complete   | 2026-02-23 |
 | 2. Chat Interface | 0/3 | Not started | - |
 | 3. Admin Interface | 0/3 | Not started | - |
