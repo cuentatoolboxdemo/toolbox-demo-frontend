@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTenant } from "@/lib/tenants";
+import { ChatInterface } from "@/components/chat/ChatInterface";
 
 interface TenantPageProps {
   params: { tenant: string };
@@ -14,10 +15,10 @@ export default function TenantPage({ params }: TenantPageProps) {
 
   return (
     <main className="min-h-screen flex flex-col bg-background">
-      <header className="bg-primary text-primary-foreground p-4">
+      <header className="bg-primary text-primary-foreground p-4 h-16 flex items-center">
         <h1 className="text-xl font-semibold">{tenant.name}</h1>
-        <p className="text-sm opacity-80">Ask me anything about {tenant.displayName}</p>
       </header>
+      <ChatInterface tenant={tenant} />
     </main>
   );
 }
