@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UploadZone } from "@/components/admin/UploadZone";
+import { SystemPromptEditor } from "@/components/admin/SystemPromptEditor";
 
 type DocItem = { id: string; filename: string; uploadedAt: string };
 
@@ -107,9 +108,7 @@ export function AdminPage() {
         </section>
         <section>
           <h2 className="text-base font-semibold mb-4">System Prompt</h2>
-          <p className="text-sm text-muted-foreground">
-            System prompt coming soon.
-          </p>
+          <SystemPromptEditor />
         </section>
       </main>
     </div>
