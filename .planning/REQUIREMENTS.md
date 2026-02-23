@@ -33,7 +33,7 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Webhook URLs configured via environment variables (`.env.local`)
+- [x] **INFRA-01**: Webhook URLs configured via environment variables (`.env.local`)
 - [ ] **INFRA-02**: Unknown tenant slugs fall back gracefully (generic name or 404)
 - [x] **INFRA-03**: Project scaffolded with Next.js App Router, Tailwind CSS, Shadcn UI, Lucide React, next-pwa
 
@@ -77,7 +77,7 @@
 | PWA-02 | Phase 1 | Pending |
 | PWA-03 | Phase 1 | Pending |
 | PWA-04 | Phase 1 | Pending |
-| INFRA-01 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
 | CHAT-01 | Phase 2 | Pending |
 | CHAT-02 | Phase 2 | Pending |
 | CHAT-03 | Phase 2 | Pending |
