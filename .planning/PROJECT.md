@@ -12,23 +12,23 @@ Employees get instant, context-aware answers from company documents through a fa
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Multi-tenant chat interface at `/[tenant]` with mobile-first iMessage/WhatsApp-style UI — v1.0
+- ✓ Fixed tenant list (calzedonia, sabores) with hardcoded welcome messages per tenant — v1.0
+- ✓ Chat sends POST to external webhook with `{ question, tenant, history, systemPrompt }` — v1.0
+- ✓ History uses OpenAI-style format `[{ role, content }]` — v1.0
+- ✓ System prompt always included in payload (empty string if unset) — v1.0
+- ✓ Loading indicator while awaiting AI response — v1.0
+- ✓ Admin interface at `/admin` protected by hardcoded password "demo123" — v1.0
+- ✓ Admin: drag-and-drop PDF upload with progress spinner, POST via FormData to n8n ingest URL — v1.0
+- ✓ Admin: system prompt textarea persisted to localStorage — v1.0
+- ✓ Admin: mock "Active Documents" list (3 static PDF entries with green "Active" badge) — v1.0
+- ✓ PWA: valid manifest.json (name: "Toolbox AI", display: standalone) — v1.0
+- ✓ PWA: meta tags for iOS and Android "Add to Home Screen" prompt — v1.0
+- ✓ PWA: auto-generated placeholder icons at 192x192 and 512x512 — v1.0
 
 ### Active
 
-- [ ] Multi-tenant chat interface at `/[tenant]` with mobile-first iMessage/WhatsApp-style UI
-- [ ] Fixed tenant list (calzedonia, sabores) with hardcoded welcome messages per tenant
-- [ ] Chat sends POST to external webhook with `{ question, tenant, history, systemPrompt }`
-- [ ] History uses OpenAI-style format `[{ role, content }]`
-- [ ] System prompt always included in payload (empty string if unset)
-- [ ] Loading indicator while awaiting AI response
-- [ ] Admin interface at `/admin` protected by hardcoded password "demo123"
-- [ ] Admin: drag-and-drop PDF upload with progress spinner, POST via FormData to n8n ingest URL
-- [ ] Admin: system prompt textarea persisted to localStorage
-- [ ] Admin: mock "Active Documents" list (3–4 static PDF entries with green "Active" badge)
-- [ ] PWA: valid manifest.json (name: "Toolbox AI", display: standalone)
-- [ ] PWA: meta tags for iOS and Android "Add to Home Screen" prompt
-- [ ] PWA: auto-generated placeholder icons at 192×192 and 512×512
+(None — next milestone not yet planned)
 
 ### Out of Scope
 
@@ -41,12 +41,15 @@ Employees get instant, context-aware answers from company documents through a fa
 
 ## Context
 
-- **Timeline**: 48-hour demo — every decision should favor shipping fast over architectural elegance
-- **Tech stack**: Next.js 14+ (App Router), React, Tailwind CSS, Shadcn UI, Lucide React icons
-- **PWA**: next-pwa or equivalent; icons are placeholder-generated (no brand assets provided yet)
-- **Webhooks**: Two external endpoints — chat inference URL and n8n document ingest URL. Both URLs are TBD and will be injected via environment variables
-- **Tenants**: Hardcoded map `{ calzedonia: "Calzedonia AI Assistant", sabores: "Sabores AI Assistant" }`
-- **System prompt flow**: Stored in `localStorage` by admin, read by chat interface, always sent as `systemPrompt` field in every chat POST request
+Shipped v1.0 with 625 LOC TypeScript/TSX across 3 phases, 9 plans, 19 tasks in one day.
+
+- **Tech stack**: Next.js 14.2.35 (App Router), React 18, Tailwind CSS, Shadcn UI (new-york style), Lucide React icons, next-pwa
+- **PWA**: next-pwa with `withPWA` wrapper; placeholder PNG icons at 192x192 and 512x512; service worker disabled in dev mode
+- **Webhooks**: Two external endpoints via `.env.local` — `NEXT_PUBLIC_CHAT_WEBHOOK_URL` (chat inference) and `NEXT_PUBLIC_INGEST_WEBHOOK_URL` (document ingest)
+- **Tenants**: Hardcoded map in `src/lib/tenants.ts` — `{ calzedonia: "Calzedonia AI Assistant", sabores: "Sabores AI Assistant" }`
+- **System prompt flow**: Stored in `localStorage("systemPrompt")` by admin, read by `ChatInterface` in every webhook POST body
+- **Admin auth**: `sessionStorage("adminAuth")` gate with password "demo123"; survives page refresh, clears on tab close
+- **Known tech debt**: Phase 3 missing formal VERIFICATION.md (human-tested via checkpoint), hydration fix applied post-execution
 
 ## Constraints
 
@@ -60,11 +63,14 @@ Employees get instant, context-aware answers from company documents through a fa
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| next-pwa for PWA setup | Mature, well-documented, minimal config for Next.js App Router | — Pending |
-| localStorage for system prompt | Simplest possible persistence for a demo, no backend needed | — Pending |
-| Hardcoded tenant map | Fixed list of 2 tenants for demo; avoids dynamic routing complexity | — Pending |
-| FormData for PDF upload | Required by n8n file ingest endpoints | — Pending |
-| OpenAI-style history format | Predictable schema for n8n webhook parsing | — Pending |
+| next-pwa for PWA setup | Mature, well-documented, minimal config for Next.js App Router | ✓ Good — installed, configured, icons and manifest verified |
+| localStorage for system prompt | Simplest possible persistence for a demo, no backend needed | ✓ Good — works cross-component (admin writes, chat reads) |
+| Hardcoded tenant map | Fixed list of 2 tenants for demo; avoids dynamic routing complexity | ✓ Good — clean `[tenant]` dynamic route with `notFound()` fallback |
+| FormData for PDF upload | Required by n8n file ingest endpoints | ✓ Good — UploadZone POSTs FormData with spinner and success feedback |
+| OpenAI-style history format | Predictable schema for n8n webhook parsing | ✓ Good — history built as `[{role, content}]` array from message state |
+| sessionStorage for admin auth | Survives page refresh (demo-friendly) but clears on tab close (secure enough for demo) | ✓ Good — no hydration issues after useEffect fix |
+| useEffect for storage reads | useState lazy initializers caused hydration mismatch (server vs client) | ✓ Good — moved to useEffect; slight flash but no errors |
+| Shadcn new-york style | `--defaults` flag selected neutral base color | ✓ Good — clean, professional look |
 
 ---
-*Last updated: 2026-02-23 after initialization*
+*Last updated: 2026-02-23 after v1.0 milestone*
