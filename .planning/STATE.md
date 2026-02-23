@@ -10,25 +10,25 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 ## Current Position
 
 Phase: 2 of 3 (Chat Interface)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-23 — Completed 02-02-PLAN.md (iMessage-style chat UI shell with MessageList, MessageInput, ChatInterface wired into tenant page)
+Plan: 3 of 3 in current phase
+Status: Awaiting checkpoint verification
+Last activity: 2026-02-23 — Completed 02-03-PLAN.md (webhook POST with loading state and assistant reply rendering; awaiting human verification checkpoint)
 
-Progress: [█████░░░░░] 55%
+Progress: [██████░░░░] 65%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 7min
-- Total execution time: 35min
+- Total plans completed: 6
+- Average duration: 6min
+- Total execution time: 36min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 31min | 10min |
-| 02-chat-interface | 2/3 | 4min | 2min |
+| 02-chat-interface | 3/3 | 5min | 2min |
 
 **Recent Trend:**
 - Last 5 plans: 2min
@@ -59,6 +59,9 @@ Recent decisions affecting current work:
 - [Phase 02-chat-interface]: App Router not-found boundary (not-found.tsx) per route segment — Next.js renders it when notFound() is called
 - [Phase 02-chat-interface]: Client boundary at ChatInterface — tenant page stays Server Component, client interactivity starts at ChatInterface
 - [Phase 02-chat-interface]: Message type defined in MessageList.tsx and re-exported — co-located with renderer, avoids separate types file
+- [Phase 02-chat-interface]: History snapshot taken before setMessages — captures prior turns only, current question excluded from history array
+- [Phase 02-chat-interface]: response.json() with fallback to response.text() — handles both { answer } and plain-text webhook responses
+- [Phase 02-chat-interface]: isLoading suppresses empty-state prompt — avoids flicker when first message is in-flight
 
 ### Pending Todos
 
@@ -71,5 +74,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-02-PLAN.md — iMessage-style chat UI with MessageList, MessageInput, ChatInterface wired into tenant page
+Stopped at: Checkpoint in 02-03-PLAN.md — awaiting human verification of complete Phase 2 chat interface (webhook POST, loading state, error fallback)
 Resume file: None

@@ -10,10 +10,10 @@
 - [x] **CHAT-01**: User navigates to `/[tenant]` and sees a welcome message specific to that tenant
 - [x] **CHAT-02**: User can type and submit a message via input + send button
 - [x] **CHAT-03**: User sees their message appear immediately in the chat thread
-- [ ] **CHAT-04**: User sees a loading indicator while the AI response is pending
-- [ ] **CHAT-05**: User sees the AI response appear in the chat thread after the webhook returns
+- [x] **CHAT-04**: User sees a loading indicator while the AI response is pending
+- [x] **CHAT-05**: User sees the AI response appear in the chat thread after the webhook returns
 - [x] **CHAT-06**: Chat history persists in component state for the session (not persisted across refreshes)
-- [ ] **CHAT-07**: Webhook POST includes `{ question, tenant, history, systemPrompt }` with OpenAI-style history and systemPrompt always present (empty string if unset)
+- [x] **CHAT-07**: Webhook POST includes `{ question, tenant, history, systemPrompt }` with OpenAI-style history and systemPrompt always present (empty string if unset)
 
 ### Admin Interface
 
@@ -81,10 +81,10 @@
 | CHAT-01 | Phase 2 | Complete |
 | CHAT-02 | Phase 2 | Complete |
 | CHAT-03 | Phase 2 | Complete |
-| CHAT-04 | Phase 2 | Pending |
-| CHAT-05 | Phase 2 | Pending |
+| CHAT-04 | Phase 2 | Complete |
+| CHAT-05 | Phase 2 | Complete |
 | CHAT-06 | Phase 2 | Complete |
-| CHAT-07 | Phase 2 | Pending |
+| CHAT-07 | Phase 2 | Complete |
 | INFRA-02 | Phase 2 | Complete |
 | ADMIN-01 | Phase 3 | Pending |
 | ADMIN-02 | Phase 3 | Pending |
