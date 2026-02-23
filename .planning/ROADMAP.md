@@ -62,12 +62,12 @@ Plans:
   3. A static list of 3-4 documents with green "Active" badges is visible after login
   4. Admin can type in the system prompt textarea and the value is still present after a page refresh
   5. System prompt saved by admin is included in every chat webhook POST (empty string if nothing was saved)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Build password gate, admin layout, and static Active Documents list
-- [ ] 03-02: Implement drag-and-drop PDF upload with progress spinner and FormData POST
-- [ ] 03-03: Build system prompt textarea with localStorage persistence
+- [ ] 03-01-PLAN.md — Password gate (sessionStorage), admin layout, and static Active Documents list
+- [ ] 03-02-PLAN.md — Drag-and-drop UploadZone with spinner, FormData POST, and document list append
+- [ ] 03-03-PLAN.md — System prompt textarea with localStorage persistence and human-verify checkpoint
 
 ## Progress
 
