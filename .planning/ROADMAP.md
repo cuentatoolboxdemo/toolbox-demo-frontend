@@ -28,12 +28,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The installed app opens in standalone mode (no browser chrome)
   4. Placeholder icons at 192x192 and 512x512 are served and referenced in manifest.json
   5. Webhook URLs can be changed by editing `.env.local` without touching source code
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Scaffold Next.js 14 App Router project with Tailwind, Shadcn UI, Lucide React, next-pwa
-- [ ] 01-02: Configure manifest.json, meta tags, placeholder icons, and PWA installability
-- [ ] 01-03: Wire environment variables for chat and ingest webhook URLs
+- [ ] 01-01-PLAN.md — Scaffold Next.js 14 App Router project with Tailwind, Shadcn UI, Lucide React, next-pwa
+- [ ] 01-02-PLAN.md — Configure manifest.json, placeholder icons, and PWA meta tags (with human verify checkpoint)
+- [ ] 01-03-PLAN.md — Wire environment variables for chat and ingest webhook URLs
 
 ### Phase 2: Chat Interface
 **Goal**: Employees can navigate to a tenant URL, read a welcome message, send questions, and receive AI answers
@@ -76,6 +76,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 0/3 | Ready to execute | - |
 | 2. Chat Interface | 0/3 | Not started | - |
 | 3. Admin Interface | 0/3 | Not started | - |
