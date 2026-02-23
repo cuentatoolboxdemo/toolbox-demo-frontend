@@ -7,7 +7,7 @@
 
 ### Chat Interface
 
-- [ ] **CHAT-01**: User navigates to `/[tenant]` and sees a welcome message specific to that tenant
+- [x] **CHAT-01**: User navigates to `/[tenant]` and sees a welcome message specific to that tenant
 - [ ] **CHAT-02**: User can type and submit a message via input + send button
 - [ ] **CHAT-03**: User sees their message appear immediately in the chat thread
 - [ ] **CHAT-04**: User sees a loading indicator while the AI response is pending
@@ -34,7 +34,7 @@
 ### Infrastructure
 
 - [x] **INFRA-01**: Webhook URLs configured via environment variables (`.env.local`)
-- [ ] **INFRA-02**: Unknown tenant slugs fall back gracefully (generic name or 404)
+- [x] **INFRA-02**: Unknown tenant slugs fall back gracefully (generic name or 404)
 - [x] **INFRA-03**: Project scaffolded with Next.js App Router, Tailwind CSS, Shadcn UI, Lucide React, next-pwa
 
 ## v2 Requirements
@@ -78,14 +78,14 @@
 | PWA-03 | Phase 1 | Complete |
 | PWA-04 | Phase 1 | Complete |
 | INFRA-01 | Phase 1 | Complete |
-| CHAT-01 | Phase 2 | Pending |
+| CHAT-01 | Phase 2 | Complete |
 | CHAT-02 | Phase 2 | Pending |
 | CHAT-03 | Phase 2 | Pending |
 | CHAT-04 | Phase 2 | Pending |
 | CHAT-05 | Phase 2 | Pending |
 | CHAT-06 | Phase 2 | Pending |
 | CHAT-07 | Phase 2 | Pending |
-| INFRA-02 | Phase 2 | Pending |
+| INFRA-02 | Phase 2 | Complete |
 | ADMIN-01 | Phase 3 | Pending |
 | ADMIN-02 | Phase 3 | Pending |
 | ADMIN-03 | Phase 3 | Pending |
