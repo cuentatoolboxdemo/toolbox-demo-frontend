@@ -35,7 +35,7 @@
 
 - [ ] **INFRA-01**: Webhook URLs configured via environment variables (`.env.local`)
 - [ ] **INFRA-02**: Unknown tenant slugs fall back gracefully (generic name or 404)
-- [ ] **INFRA-03**: Project scaffolded with Next.js App Router, Tailwind CSS, Shadcn UI, Lucide React, next-pwa
+- [x] **INFRA-03**: Project scaffolded with Next.js App Router, Tailwind CSS, Shadcn UI, Lucide React, next-pwa
 
 ## v2 Requirements
 
@@ -72,7 +72,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-03 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Complete |
 | PWA-01 | Phase 1 | Pending |
 | PWA-02 | Phase 1 | Pending |
 | PWA-03 | Phase 1 | Pending |
