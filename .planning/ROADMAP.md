@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [ ] 01-01-PLAN.md — Scaffold Next.js 14 App Router project with Tailwind, Shadcn UI, Lucide React, next-pwa
-- [ ] 01-02-PLAN.md — Configure manifest.json, placeholder icons, and PWA meta tags (with human verify checkpoint)
+- [x] 01-02-PLAN.md — Configure manifest.json, placeholder icons, and PWA meta tags (with human verify checkpoint)
 - [x] 01-03-PLAN.md — Wire environment variables for chat and ingest webhook URLs
 
 ### Phase 2: Chat Interface
