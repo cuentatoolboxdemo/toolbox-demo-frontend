@@ -10,25 +10,25 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 ## Current Position
 
 Phase: 2 of 3 (Chat Interface)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-02-23 — Completed 02-01-PLAN.md (tenant routing with hardcoded map, welcome heading, not-found fallback)
+Last activity: 2026-02-23 — Completed 02-02-PLAN.md (iMessage-style chat UI shell with MessageList, MessageInput, ChatInterface wired into tenant page)
 
-Progress: [████░░░░░░] 44%
+Progress: [█████░░░░░] 55%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 8min
-- Total execution time: 33min
+- Total plans completed: 5
+- Average duration: 7min
+- Total execution time: 35min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 31min | 10min |
-| 02-chat-interface | 1/3 | 2min | 2min |
+| 02-chat-interface | 2/3 | 4min | 2min |
 
 **Recent Trend:**
 - Last 5 plans: 2min
@@ -57,6 +57,8 @@ Recent decisions affecting current work:
 - [Phase 02-chat-interface]: Hardcoded tenant map in tenants.ts — no dynamic routing, avoids DB dependency at this stage
 - [Phase 02-chat-interface]: Server Component for tenant page and not-found — no 'use client' needed yet; client interactivity added in Plan 02
 - [Phase 02-chat-interface]: App Router not-found boundary (not-found.tsx) per route segment — Next.js renders it when notFound() is called
+- [Phase 02-chat-interface]: Client boundary at ChatInterface — tenant page stays Server Component, client interactivity starts at ChatInterface
+- [Phase 02-chat-interface]: Message type defined in MessageList.tsx and re-exported — co-located with renderer, avoids separate types file
 
 ### Pending Todos
 
@@ -69,5 +71,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-01-PLAN.md — tenant routing with hardcoded map, welcome heading per tenant, and not-found fallback
+Stopped at: Completed 02-02-PLAN.md — iMessage-style chat UI with MessageList, MessageInput, ChatInterface wired into tenant page
 Resume file: None
