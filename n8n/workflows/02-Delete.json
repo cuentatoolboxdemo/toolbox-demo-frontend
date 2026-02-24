@@ -1,0 +1,95 @@
+{
+    "name": "02-Delete-Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "delete",
+                "responseMode": "lastNode",
+                "options": {}
+            },
+            "id": "1",
+            "name": "Webhook Delete",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "delete"
+        },
+        {
+            "parameters": {
+                "operation": "delete",
+                "bucketName": "documents",
+                "fileName": "={{ $json.body.id }}.pdf"
+            },
+            "id": "2",
+            "name": "MinIO S3 Delete",
+            "type": "n8n-nodes-base.awsS3",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "=http://toolbox-demo-qdrant:6333/collections/toolbox-demo/points/delete",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "api-key",
+                            "value": "9dskfj29dj29dj29dj29d"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "filter",
+                            "value": "={\n  \"must\": [\n    {\n      \"key\": \"document_id\",\n      \"match\": {\n        \"value\": \"{{$json.body.id}}\"\n      }\n    }\n  ]\n}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "id": "3",
+            "name": "Qdrant REST Delete",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 3,
+            "position": [
+                650,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook Delete": {
+            "main": [
+                [
+                    {
+                        "node": "MinIO S3 Delete",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "MinIO S3 Delete": {
+            "main": [
+                [
+                    {
+                        "node": "Qdrant REST Delete",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {}
+}

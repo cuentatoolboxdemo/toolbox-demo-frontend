@@ -42,12 +42,3 @@ Plans:
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 5 to break down)
-
-### Phase 6: Core n8n Workflows
-
-**Goal:** [To be planned]
-**Depends on:** Phase 5
-**Plans:** 0 plans
-
-Plans:
-- [ ] TBD (run /gsd:plan-phase 6 to break down)

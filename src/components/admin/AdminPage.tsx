@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { UploadZone } from "@/components/admin/UploadZone";
 import { SystemPromptEditor } from "@/components/admin/SystemPromptEditor";
+import { Trash2 } from "lucide-react";
 
 type DocItem = { id: string; filename: string; uploadedAt: string };
 
@@ -18,8 +19,19 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
   const [authed, setAuthed] = useState(initialAuthed);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [docs, setDocs] = useState<DocItem[]>(INITIAL_DOCS);
+  const [docs, setDocs] = useState<DocItem[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (authed) {
+      fetch("/api/docs")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.docs) setDocs(data.docs);
+        })
+        .catch(() => { });
+    }
+  }, [authed]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -51,6 +63,19 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
     setAuthed(false);
     setPassword("");
     setError("");
+  }
+
+  async function handleDelete(id: string) {
+    // Optimistic UI update could be done, but let's just do it sequentially 
+    // to ensure it actually deleted
+    try {
+      const res = await fetch(`/api/docs/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        setDocs((prev) => prev.filter((d) => d.id !== id));
+      }
+    } catch {
+      // Error handling
+    }
   }
 
   if (!authed) {
@@ -111,9 +136,18 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
                     {doc.uploadedAt}
                   </span>
                 </div>
-                <span className="text-xs font-medium text-green-600 bg-green-50 border border-green-200 rounded-full px-2 py-0.5">
-                  Active
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-medium text-green-600 bg-green-50 border border-green-200 rounded-full px-2 py-0.5">
+                    Active
+                  </span>
+                  <button
+                    onClick={() => handleDelete(doc.id)}
+                    className="text-muted-foreground hover:text-red-500 transition-colors p-1"
+                    title="Delete document"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>

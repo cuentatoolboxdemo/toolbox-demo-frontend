@@ -37,10 +37,12 @@ export async function POST(request: Request) {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
             const data = await response.json();
-            return NextResponse.json(data);
+            // Map n8n's default `output` or `text` field to `answer`
+            const answerText = data.output || data.text || data.answer || JSON.stringify(data);
+            return NextResponse.json({ answer: answerText });
         } else {
             const text = await response.text();
-            return new NextResponse(text, { headers: { "Content-Type": "text/plain" } });
+            return NextResponse.json({ answer: text });
         }
     } catch (error) {
         console.error("Chat API Error:", error);

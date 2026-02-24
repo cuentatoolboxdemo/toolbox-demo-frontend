@@ -69,7 +69,7 @@ export function ChatInterface({ tenant }: ChatInterfaceProps) {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)]">
+    <div className="flex flex-col flex-1 h-full overflow-hidden">
       <MessageList messages={messages} isLoading={isLoading} />
       <MessageInput onSubmit={handleSend} disabled={isLoading} />
     </div>
