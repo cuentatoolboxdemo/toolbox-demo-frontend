@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Tenant } from "@/lib/tenants";
 import { MessageList, type Message } from "@/components/chat/MessageList";
 import { MessageInput } from "@/components/chat/MessageInput";
+import { AnimatedAvatar } from "@/components/chat/AnimatedAvatar";
 import { Home } from "lucide-react";
 import Link from "next/link";
 
@@ -72,13 +73,18 @@ export function ChatInterface({ tenant }: ChatInterfaceProps) {
 
   return (
     <div className="flex flex-col flex-1 h-full overflow-hidden relative">
-      <div className="absolute top-4 left-4 z-10">
+      <div className="absolute top-4 left-4 z-20">
         <Link href="/" className="p-2 bg-white/80 backdrop-blur-sm shadow-sm rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all flex items-center justify-center">
           <Home className="w-5 h-5" />
         </Link>
       </div>
-      <MessageList messages={messages} isLoading={isLoading} />
-      <MessageInput onSubmit={handleSend} disabled={isLoading} />
+
+      <AnimatedAvatar isShrunk={messages.length > 0} isThinking={isLoading} />
+
+      <div className="flex flex-col flex-1 h-full overflow-hidden relative z-10">
+        <MessageList messages={messages} isLoading={isLoading} />
+        <MessageInput onSubmit={handleSend} disabled={isLoading} />
+      </div>
     </div>
   );
 }
