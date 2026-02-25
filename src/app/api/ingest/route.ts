@@ -12,7 +12,7 @@ function getDocsFile(tenantId: string) {
 
 export async function POST(request: Request) {
     try {
-        const session = cookies().get("admin_session")?.value;
+        const session = cookies().get("auth_session")?.value;
         const parsed = await decrypt(session ?? "");
         if (!parsed || parsed.role !== "admin") {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

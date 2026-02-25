@@ -53,7 +53,11 @@ export function AdminPage({
       const data = await res.json();
 
       if (data.success) {
-        setAuthed(true);
+        if (data.role === "admin") {
+          setAuthed(true);
+        } else {
+          setError("Acceso denegado. Requiere permisos de administrador.");
+        }
       } else {
         setError(data.error || "Invalid password");
       }

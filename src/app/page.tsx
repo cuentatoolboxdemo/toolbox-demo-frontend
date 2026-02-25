@@ -1,10 +1,14 @@
-import Link from "next/link";
-import { TENANTS } from "@/lib/tenants";
+"use client";
+
+import { useState } from "react";
+import { TENANTS, Tenant } from "@/lib/tenants";
+import { LoginDialog } from "@/components/auth/LoginDialog";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Bot, ChevronRight } from "lucide-react";
 
 export default function Home() {
   const tenants = Object.values(TENANTS);
+  const [selectedTenant, setSelectedTenant] = useState<Tenant | null>(null);
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -16,7 +20,11 @@ export default function Home() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {tenants.map((tenant) => (
-            <Link key={tenant.slug} href={`/${tenant.slug}`} className="block group">
+            <button
+              key={tenant.slug}
+              onClick={() => setSelectedTenant(tenant)}
+              className="block group text-left w-full focus:outline-none"
+            >
               <Card className="h-full transition-all duration-200 hover:shadow-md hover:border-gray-400 group-hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center space-y-0 gap-4">
                   <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-50 transition-colors">
@@ -29,10 +37,18 @@ export default function Home() {
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </CardHeader>
               </Card>
-            </Link>
+            </button>
           ))}
         </div>
       </div>
+
+      {selectedTenant && (
+        <LoginDialog
+          tenantId={selectedTenant.slug}
+          tenantName={selectedTenant.displayName}
+          onClose={() => setSelectedTenant(null)}
+        />
+      )}
     </main>
   );
 }

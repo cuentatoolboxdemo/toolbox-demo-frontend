@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { decrypt } from "@/lib/auth";
 
 export async function middleware(request: NextRequest) {
-    const session = request.cookies.get("admin_session")?.value;
+    const session = request.cookies.get("auth_session")?.value;
 
     // Protect /admin and /api/ingest routes
     const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");

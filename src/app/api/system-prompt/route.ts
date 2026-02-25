@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Tenant ID required" }, { status: 400 });
         }
 
-        const session = cookies().get("admin_session")?.value;
+        const session = cookies().get("auth_session")?.value;
         const parsed = await decrypt(session ?? "");
         if (!parsed || parsed.role !== "admin") {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

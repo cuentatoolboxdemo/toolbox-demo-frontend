@@ -10,7 +10,7 @@ export default async function AdminRoute({ params }: { params: { tenant: string 
     notFound();
   }
 
-  const session = cookies().get("admin_session")?.value;
+  const session = cookies().get("auth_session")?.value;
   let initialAuthed = false;
   if (session) {
     const parsed = await decrypt(session);

@@ -6,11 +6,15 @@ export async function POST(request: Request) {
     try {
         const { password } = await request.json();
 
-        if (password === "demo123") {
-            const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
-            const session = await encrypt({ role: "admin", expires });
+        let role = "";
+        if (password === "demo123") role = "admin";
+        else if (password === "user123") role = "user";
 
-            cookies().set("admin_session", session, {
+        if (role) {
+            const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+            const session = await encrypt({ role, expires });
+
+            cookies().set("auth_session", session, {
                 expires,
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
@@ -18,7 +22,7 @@ export async function POST(request: Request) {
                 path: "/",
             });
 
-            return NextResponse.json({ success: true });
+            return NextResponse.json({ success: true, role });
         }
 
         return NextResponse.json(
