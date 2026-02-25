@@ -4,6 +4,12 @@ import { decrypt } from "@/lib/auth";
 import { promises as fs } from "fs";
 import path from "path";
 
+const DATA_DIR = path.join(process.cwd(), "data");
+
+function getDocsFile(tenantId: string) {
+    return path.join(DATA_DIR, `docs_${tenantId}.json`);
+}
+
 export async function POST(request: Request) {
     try {
         const session = cookies().get("admin_session")?.value;
@@ -14,7 +20,12 @@ export async function POST(request: Request) {
 
         const formData = await request.formData();
         const file = formData.get("file") as File;
+        const tenant = formData.get("tenant") as string;
         const newId = crypto.randomUUID();
+
+        if (!tenant) {
+            return NextResponse.json({ error: "Tenant is required" }, { status: 400 });
+        }
 
         // n8n expects document_id inside the form data payload to attach it as metadata
         formData.append("document_id", newId);
@@ -34,11 +45,10 @@ export async function POST(request: Request) {
         }
 
         // Append to docs.json
-        const DATA_DIR = path.join(process.cwd(), "data");
-        const DOCS_FILE = path.join(DATA_DIR, "docs.json");
-        let docs = [];
+        const docsFile = getDocsFile(tenant);
+        let docs: any[] = [];
         try {
-            const data = await fs.readFile(DOCS_FILE, "utf-8");
+            const data = await fs.readFile(docsFile, "utf-8");
             docs = JSON.parse(data);
         } catch {
             docs = [
@@ -52,7 +62,7 @@ export async function POST(request: Request) {
         if (file) {
             docs.push({ id: newId, filename: file.name, uploadedAt: today });
             await fs.mkdir(DATA_DIR, { recursive: true }).catch(() => { });
-            await fs.writeFile(DOCS_FILE, JSON.stringify(docs, null, 2), "utf-8");
+            await fs.writeFile(docsFile, JSON.stringify(docs, null, 2), "utf-8");
         }
 
         return NextResponse.json({ success: true });

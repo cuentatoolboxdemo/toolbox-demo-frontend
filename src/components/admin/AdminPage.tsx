@@ -15,8 +15,13 @@ const INITIAL_DOCS: DocItem[] = [
   { id: "2", filename: "product-catalog-2025.pdf", uploadedAt: "2026-01-15" },
   { id: "3", filename: "onboarding-guide.pdf", uploadedAt: "2026-02-01" },
 ];
-
-export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
+export function AdminPage({
+  initialAuthed,
+  tenantId,
+}: {
+  initialAuthed: boolean;
+  tenantId: string;
+}) {
   const [authed, setAuthed] = useState(initialAuthed);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,14 +30,14 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
 
   useEffect(() => {
     if (authed) {
-      fetch("/api/docs")
+      fetch(`/api/docs?tenantId=${tenantId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.docs) setDocs(data.docs);
         })
         .catch(() => { });
     }
-  }, [authed]);
+  }, [authed, tenantId]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -70,7 +75,7 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
     // Optimistic UI update could be done, but let's just do it sequentially 
     // to ensure it actually deleted
     try {
-      const res = await fetch(`/api/docs/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/docs/${id}?tenantId=${tenantId}`, { method: "DELETE" });
       if (res.ok) {
         setDocs((prev) => prev.filter((d) => d.id !== id));
       }
@@ -119,6 +124,7 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
         <section>
           <h2 className="text-base font-semibold mb-4">Document Upload</h2>
           <UploadZone
+            tenantId={tenantId}
             onUploadSuccess={(filename) => {
               const today = new Date().toISOString().split("T")[0];
               setDocs((prev) => [
@@ -139,7 +145,7 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
                 <div className="flex flex-col">
                   <span className="text-sm">{doc.filename}</span>
                   <span className="text-xs text-muted-foreground">
-                    {doc.uploadedAt}
+                    {doc.uploadedAt} • {tenantId}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -160,7 +166,7 @@ export function AdminPage({ initialAuthed }: { initialAuthed: boolean }) {
         </section>
         <section>
           <h2 className="text-base font-semibold mb-4">System Prompt</h2>
-          <SystemPromptEditor />
+          <SystemPromptEditor tenantId={tenantId} />
         </section>
       </main>
     </div>

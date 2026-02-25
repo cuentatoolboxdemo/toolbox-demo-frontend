@@ -2,25 +2,25 @@
 
 import { useState, useEffect } from "react";
 
-export function SystemPromptEditor() {
+export function SystemPromptEditor({ tenantId }: { tenantId: string }) {
   const [value, setValue] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     async function loadPrompt() {
       try {
-        const res = await fetch("/api/system-prompt");
+        const res = await fetch(`/api/system-prompt?tenantId=${tenantId}`);
         const data = await res.json();
         if (data.prompt) setValue(data.prompt);
       } catch (err) { }
     }
     loadPrompt();
-  }, []);
+  }, [tenantId]);
 
   async function handleSave() {
     setIsSaving(true);
     try {
-      await fetch("/api/system-prompt", {
+      await fetch(`/api/system-prompt?tenantId=${tenantId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: value }),

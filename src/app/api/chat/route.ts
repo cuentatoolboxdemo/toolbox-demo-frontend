@@ -3,7 +3,10 @@ import { promises as fs } from "fs";
 import path from "path";
 
 const DATA_DIR = path.join(process.cwd(), "data");
-const PROMPT_FILE = path.join(DATA_DIR, "systemPrompt.txt");
+
+function getPromptFile(tenantId: string) {
+    return path.join(DATA_DIR, `systemPrompt_${tenantId}.txt`);
+}
 
 export async function POST(request: Request) {
     try {
@@ -12,7 +15,9 @@ export async function POST(request: Request) {
         // Read the System Prompt securely from the server
         let systemPrompt = "";
         try {
-            systemPrompt = await fs.readFile(PROMPT_FILE, "utf-8");
+            if (body.tenant) {
+                systemPrompt = await fs.readFile(getPromptFile(body.tenant), "utf-8");
+            }
         } catch {
             // Keep it empty if not set
         }

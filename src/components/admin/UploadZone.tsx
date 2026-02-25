@@ -4,10 +4,11 @@ import { useState, useRef } from "react";
 import { UploadCloud, Loader2 } from "lucide-react";
 
 interface UploadZoneProps {
+  tenantId: string;
   onUploadSuccess: (filename: string) => void;
 }
 
-export function UploadZone({ onUploadSuccess }: UploadZoneProps) {
+export function UploadZone({ tenantId, onUploadSuccess }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [statusMsg, setStatusMsg] = useState<{
@@ -23,6 +24,7 @@ export function UploadZone({ onUploadSuccess }: UploadZoneProps) {
     try {
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("tenant", tenantId);
       const res = await fetch("/api/ingest", {
         method: "POST",
         body: formData,

@@ -3,9 +3,16 @@ import { cookies } from "next/headers";
 import { decrypt } from "@/lib/auth";
 import { promises as fs } from "fs";
 import path from "path";
+import { NextRequest } from "next/server";
+
+const DATA_DIR = path.join(process.cwd(), "data");
+
+function getDocsFile(tenantId: string) {
+    return path.join(DATA_DIR, `docs_${tenantId}.json`);
+}
 
 export async function DELETE(
-    request: Request,
+    request: NextRequest,
     { params }: { params: { id: string } }
 ) {
     try {
@@ -16,14 +23,19 @@ export async function DELETE(
         }
 
         const id = params.id;
+        const searchParams = request.nextUrl.searchParams;
+        const tenantId = searchParams.get("tenantId");
+
+        if (!tenantId) {
+            return NextResponse.json({ error: "Tenant is required" }, { status: 400 });
+        }
 
         // Read local docs
-        const DATA_DIR = path.join(process.cwd(), "data");
-        const DOCS_FILE = path.join(DATA_DIR, "docs.json");
+        const docsFile = getDocsFile(tenantId);
         let docs: any[] = [];
 
         try {
-            const data = await fs.readFile(DOCS_FILE, "utf-8");
+            const data = await fs.readFile(docsFile, "utf-8");
             docs = JSON.parse(data);
         } catch {
             // File might not exist or be invalid, nothing to delete locally
@@ -48,7 +60,7 @@ export async function DELETE(
 
             // Remove locally
             docs = docs.filter(d => d.id !== id);
-            await fs.writeFile(DOCS_FILE, JSON.stringify(docs, null, 2), "utf-8");
+            await fs.writeFile(docsFile, JSON.stringify(docs, null, 2), "utf-8");
         }
 
         return NextResponse.json({ success: true });
