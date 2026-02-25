@@ -70,6 +70,15 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 08-01: Tenant Isolated Admin & System Prompt
-- [ ] 08-02: Tenant Isolated Document Lists & Uploads
+- [x] 08-01: Tenant Isolated Admin & System Prompt
+- [x] 08-02: Tenant Isolated Document Lists & Uploads
+
+### Phase 9: Unified Auth & Role-based Routing
+
+**Goal:** Centralized login gate determining navigation to Chat or Admin based on user role
+**Depends on:** Phase 8
+**Plans:** 1 plans
+
+Plans:
+- [ ] 09-01: Login Gate and Role Router
 

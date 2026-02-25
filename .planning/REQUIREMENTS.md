@@ -13,6 +13,12 @@
 - [ ] **ADMIN-04**: Active documents list is isolated per tenant.
 - [ ] **ADMIN-05**: Document uploads via the dropzone are associated with the active tenant.
 
+## Category: Unified Auth (AUTH)
+- [x] **AUTH-01**: Upon opening the application, user selects a tenant from the directory.
+- [x] **AUTH-02**: Selecting a tenant prompts a universal Login overlay or page.
+- [x] **AUTH-03**: Submitting the form with a regular user credential navigates to the tenant's conversational chat.
+- [x] **AUTH-04**: Submitting the form with an admin credential navigates to the tenant's admin dashboard explicitly.
+
 ## Future Requirements
 - TBD
 
