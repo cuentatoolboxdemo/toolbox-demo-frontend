@@ -3,6 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-3 (shipped 2026-02-23)
+- 🚧 **v1.1 Usability & Tenant Management** — Phases 7-8 (current)
 
 ## Phases
 
@@ -51,3 +52,24 @@ Plans:
 
 Plans:
 - [ ] TBD (run /gsd:plan-phase 6 to break down)
+
+### Phase 7: Directory & Navigation UX
+
+**Goal:** Centralized landing page directory for tenants
+**Depends on:** Phase 3
+**Plans:** 2 plans
+
+Plans:
+- [ ] 07-01: Centralized Landing Page
+- [ ] 07-02: Navigation Back to Directory
+
+### Phase 8: Tenant Admin Isolation
+
+**Goal:** Isolate admin panel views and document management per tenant
+**Depends on:** Phase 7
+**Plans:** 2 plans
+
+Plans:
+- [ ] 08-01: Tenant Isolated Admin & System Prompt
+- [ ] 08-02: Tenant Isolated Document Lists & Uploads
+

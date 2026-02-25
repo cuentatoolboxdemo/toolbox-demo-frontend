@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 
 ## Current Position
 
-Phase: 3 of 3 (Admin Panel)
-Plan: 3 of 3 in current phase
-Status: Complete — all 3 phases finished
-Last activity: 2026-02-23 — Completed 03-03-PLAN.md (SystemPromptEditor with localStorage persistence, full admin panel human-verified)
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-25 — Milestone v1.1 started
 
-Progress: [██████████] 100%
+Progress: [          ] 0%
 
 ## Performance Metrics
 
@@ -40,6 +40,7 @@ Progress: [██████████] 100%
 ## Accumulated Context
 
 ### Roadmap Evolution
+- Milestone v1.1 Usability & Tenant Management defined for Phase 7 & 8
 - Phase 4 added: Consolidación y Seguridad
 
 ### Decisions

@@ -1,5 +1,14 @@
 # Toolbox AI — RAG Training Web App
 
+## Current Milestone: v1.1 Usability & Tenant Management
+
+**Goal:** Improve navigation UX with a centralized directory and isolate admin functionality per tenant.
+
+**Target features:**
+- Root path landing page for tenants
+- Tenant-isolated admin views (password protected)
+- Tenant-isolated system prompts and document views
+- New "IDE Marketing" tenant
 ## What This Is
 
 A functional V1 demo of an AI-powered RAG (Retrieval-Augmented Generation) training web app, delivered as a Progressive Web App installable on mobile devices. Employees access a chat interface at a tenant-specific URL (e.g., `/calzedonia`) to ask questions answered by an AI trained on uploaded company documents. Admins manage documents and configure the system prompt at `/admin`.
@@ -28,7 +37,9 @@ Employees get instant, context-aware answers from company documents through a fa
 
 ### Active
 
-(None — next milestone not yet planned)
+- Centralized directory (`/`) for available tenants
+- Tenant-specific admin panel isolation (`/admin/[tenant]`)
+- Addition of `ide_marketing` tenant to the demo
 
 ### Out of Scope
 
@@ -73,4 +84,4 @@ Shipped v1.0 with 625 LOC TypeScript/TSX across 3 phases, 9 plans, 19 tasks in o
 | Shadcn new-york style | `--defaults` flag selected neutral base color | ✓ Good — clean, professional look |
 
 ---
-*Last updated: 2026-02-23 after v1.0 milestone*
+*Last updated: 2026-02-25 after v1.1 milestone definition*
