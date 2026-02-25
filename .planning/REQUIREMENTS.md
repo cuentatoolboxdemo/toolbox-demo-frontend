@@ -19,6 +19,10 @@
 - [x] **AUTH-03**: Submitting the form with a regular user credential navigates to the tenant's conversational chat.
 - [x] **AUTH-04**: Submitting the form with an admin credential navigates to the tenant's admin dashboard explicitly.
 
+## Category: Chat UX (UX)
+- [x] **UX-01**: The chat interface features a central, animated "AI Avatar" or "Orb" when the chat is empty or has few messages, indicating the AI is listening or active.
+- [x] **UX-02**: The animated element gracefully shrinks or hides itself as the conversation history grows, so as not to obstruct the text.
+
 ## Future Requirements
 - TBD
 

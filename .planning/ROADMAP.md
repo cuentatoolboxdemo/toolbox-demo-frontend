@@ -80,5 +80,14 @@ Plans:
 **Plans:** 1 plans
 
 Plans:
-- [ ] 09-01: Login Gate and Role Router
+- [x] 09-01: Login Gate and Role Router
+
+### Phase 10: Chat UI/UX Polish
+
+**Goal:** Add a dynamic animated element to the chat that indicates the AI is alive, which scales down as the conversation fills the screen.
+**Depends on:** Phase 9
+**Plans:** 1/1 plans complete
+
+Plans:
+- [ ] 10-01: Animated AI Avatar Component
 
