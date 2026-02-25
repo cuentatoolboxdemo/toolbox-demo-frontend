@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import { AnimatedAvatar } from "@/components/chat/AnimatedAvatar";
 
 export type Message = {
   id: string;
@@ -23,17 +24,31 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
   }, [messages, isLoading]);
 
   if (messages.length === 0 && !isLoading) {
-    return (
-      <div className="flex flex-col gap-2 overflow-y-auto flex-1 p-4 items-center justify-center">
-        <p className="text-muted-foreground text-sm text-center">
-          Send a message to get started
-        </p>
-      </div>
-    );
+    // Si no hay mensajes, el flex-1 empujará el avatar al centro exacto (abajo tiene otro flex-1 invisible en el html general).
   }
 
   return (
-    <div className="flex flex-col gap-2 overflow-y-auto flex-1 p-4">
+    <div className="flex flex-col gap-4 overflow-y-auto flex-1 p-4 pt-20">
+      {/* 
+        This empty 'flex-1' div consumes maximum vertical space. 
+        As messages get added below it, it shrinks until disappearing, 
+        pushing the first message up from the very bottom.
+      */}
+      <div className="flex-1 min-h-2 transition-all duration-700 shrink"></div>
+
+      {/* Avatar Container inserted into the regular DOM Flow (pushable by texts) */}
+      <div
+        className={`flex justify-center transition-all duration-1000 shrink-0 ${messages.length > 0 ? "scale-50 opacity-40 -my-16" : "scale-100 opacity-100 py-8"
+          }`}
+      >
+        <AnimatedAvatar isShrunk={messages.length > 0} isThinking={isLoading ?? false} />
+      </div>
+
+      {/* When no messages, we insert a bottom spacer to perfectly center the Avatar */}
+      {messages.length === 0 && (
+        <div className="flex-1 transition-all duration-700"></div>
+      )}
+
       {messages.map((message) => (
         <div
           key={message.id}
@@ -68,7 +83,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
           Thinking...
         </div>
       )}
-      <div ref={bottomRef} />
+      <div ref={bottomRef} className="h-4 shrink-0" />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { Tenant } from "@/lib/tenants";
 import { MessageList, type Message } from "@/components/chat/MessageList";
 import { MessageInput } from "@/components/chat/MessageInput";
-import { AnimatedAvatar } from "@/components/chat/AnimatedAvatar";
 import { Home } from "lucide-react";
 import Link from "next/link";
 
@@ -78,8 +77,6 @@ export function ChatInterface({ tenant }: ChatInterfaceProps) {
           <Home className="w-5 h-5" />
         </Link>
       </div>
-
-      <AnimatedAvatar isShrunk={messages.length > 0} isThinking={isLoading} />
 
       <div className="flex flex-col flex-1 h-full overflow-hidden relative z-10">
         <MessageList messages={messages} isLoading={isLoading} />
