@@ -22,6 +22,7 @@
 ## Category: Chat UX (UX)
 - [x] **UX-01**: The chat interface features a central, animated "AI Avatar" or "Orb" when the chat is empty or has few messages, indicating the AI is listening or active.
 - [x] **UX-02**: The animated element gracefully shrinks or hides itself as the conversation history grows, so as not to obstruct the text.
+- [x] **UX-03**: The chat platform displays custom branding per tenant, manipulating visual themes (e.g. colors) and logos across the chat layout and Animated Avatar.
 
 ## Future Requirements
 - TBD
