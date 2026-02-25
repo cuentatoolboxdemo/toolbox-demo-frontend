@@ -11,12 +11,15 @@ export type Message = {
   timestamp: Date;
 };
 
+import type { TenantTheme } from "@/lib/tenants";
+
 interface MessageListProps {
   messages: Message[];
   isLoading?: boolean;
+  theme: TenantTheme;
 }
 
-export function MessageList({ messages, isLoading }: MessageListProps) {
+export function MessageList({ messages, isLoading, theme }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,7 +44,7 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
         className={`flex justify-center transition-all duration-1000 shrink-0 ${messages.length > 0 ? "scale-50 opacity-40 -my-16" : "scale-100 opacity-100 py-8"
           }`}
       >
-        <AnimatedAvatar isShrunk={messages.length > 0} isThinking={isLoading ?? false} />
+        <AnimatedAvatar isShrunk={messages.length > 0} isThinking={isLoading ?? false} theme={theme} />
       </div>
 
       {/* When no messages, we insert a bottom spacer to perfectly center the Avatar */}
@@ -54,9 +57,10 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
           key={message.id}
           className={
             message.role === "user"
-              ? "ml-auto max-w-[80%] bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-2 text-sm"
+              ? "ml-auto max-w-[80%] rounded-2xl rounded-br-sm px-4 py-2 text-sm"
               : "mr-auto max-w-[80%] bg-muted text-foreground rounded-2xl rounded-bl-sm px-4 py-2 text-sm"
           }
+          style={message.role === "user" ? { backgroundColor: theme.primary, color: theme.primaryText } : {}}
         >
           {message.role === "assistant" ? (
             <div className="prose prose-sm dark:prose-invert break-words max-w-none prose-p:leading-relaxed prose-pre:p-0">
