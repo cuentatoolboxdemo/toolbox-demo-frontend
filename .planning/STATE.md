@@ -42,6 +42,8 @@ Progress: [          ] 0%
 ### Roadmap Evolution
 - Milestone v1.1 Usability & Tenant Management defined for Phase 7 & 8
 - Phase 4 added: Consolidación y Seguridad
+- Phase 12 added: User View Visual Polish
+- Phase 13 added: Document ingestion improvements & admin changes
 
 ### Decisions
 

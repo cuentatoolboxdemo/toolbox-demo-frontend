@@ -100,3 +100,21 @@ Plans:
 Plans:
 - [ ] 11-01: Dynamic Tenant Theming & Avatar Customization
 
+
+### Phase 12: User View Visual Polish
+
+**Goal:** [To be planned]
+**Depends on:** Phase 11
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 12 to break down)
+
+### Phase 13: Document ingestion improvements & admin changes
+
+**Goal:** [To be planned]
+**Depends on:** Phase 12
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 13 to break down)
