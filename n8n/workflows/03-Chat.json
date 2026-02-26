@@ -64,7 +64,7 @@
             "parameters": {
                 "qdrantCollection": "toolbox-demo",
                 "options": {
-                    "searchFilterJson": "{\n  \"should\": [\n    {\n      \"key\": \"metadata.batch\",\n      \"match\": {\n        \"value\": 12345\n      }\n    }\n  ]\n}"
+                    "searchFilterJson": "={\n  \"must\": [\n    {\n      \"key\": \"metadata.tenant\",\n      \"match\": { \"value\": \"{{ $('Edit Fields').item.json.tenant_id }}\" }\n    }\n  ]\n}\n"
                 }
             },
             "id": "0d19419b-cde9-4451-9a57-d1c9fd0c5faf",
