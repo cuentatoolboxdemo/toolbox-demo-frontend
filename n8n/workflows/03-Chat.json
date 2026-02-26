@@ -7,43 +7,43 @@
                 "responseMode": "lastNode",
                 "options": {}
             },
-            "id": "196d3651-9c6a-4474-8b0b-ffebe5b8b9f7",
+            "id": "994a2d6d-fa4b-4e71-8cd1-8bfedd4f7ad3",
             "name": "Webhook Chat",
             "type": "n8n-nodes-base.webhook",
             "typeVersion": 1,
             "position": [
-                176,
-                240
+                -16,
+                368
             ],
             "webhookId": "chat"
         },
         {
             "parameters": {
-                "text": "={{ $json.body.question }}",
+                "text": "={{ $('Webhook Chat').item.json.body.question }}",
                 "options": {
-                    "systemMessage": "={{ $json.body.systemPrompt }}"
+                    "systemMessage": "={{ $('Webhook Chat').item.json.body.systemPrompt }}"
                 }
             },
-            "id": "1f208de7-fc30-4649-b12b-f116225617b8",
+            "id": "d853b958-e5c9-449d-9d30-340ba830b752",
             "name": "AI Agent",
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 1,
             "position": [
-                384,
-                240
+                480,
+                368
             ]
         },
         {
             "parameters": {
                 "contextWindowLength": 10
             },
-            "id": "1d9b650c-8d92-404b-9eac-20d26f512fb1",
+            "id": "f777d8fa-6a38-4cee-93a8-2f87e68b146b",
             "name": "Window Buffer Memory",
             "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
             "typeVersion": 1,
             "position": [
-                288,
-                480
+                336,
+                592
             ]
         },
         {
@@ -51,29 +51,29 @@
                 "name": "document_retriever",
                 "description": "Call this tool to find factual information from the uploaded documents to answer the user's question."
             },
-            "id": "ca06bbd5-024b-4f71-ad82-c726b08285d0",
+            "id": "d6ff87c2-2c79-4578-b6fd-6305df2afacf",
             "name": "Vector Store Tool",
             "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
             "typeVersion": 1,
             "position": [
-                576,
-                448
+                464,
+                592
             ]
         },
         {
             "parameters": {
                 "qdrantCollection": "toolbox-demo",
                 "options": {
-                    "searchFilterJson": "{\n  \"must\": [\n    {\n      \"key\": \"metadata.tenant\",\n      \"match\": {\n        \"value\": \"{{ $('Webhook Chat').item.json.body.tenant }}\"\n      }\n    }\n  ]\n}"
+                    "searchFilterJson": "{\n  \"should\": [\n    {\n      \"key\": \"metadata.batch\",\n      \"match\": {\n        \"value\": 12345\n      }\n    }\n  ]\n}"
                 }
             },
-            "id": "767affd6-4a40-4a9b-bf1d-75aaa734e868",
+            "id": "0d19419b-cde9-4451-9a57-d1c9fd0c5faf",
             "name": "Qdrant Vector Store",
             "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
             "typeVersion": 1,
             "position": [
-                496,
-                656
+                368,
+                800
             ],
             "credentials": {
                 "qdrantApi": {
@@ -87,13 +87,13 @@
                 "model": "text-embedding-3-small",
                 "options": {}
             },
-            "id": "45a773a6-c78c-4b1d-9b36-ae323b4bb22c",
+            "id": "3049761d-c2ac-4162-8545-f3241974443a",
             "name": "Embeddings OpenAI",
             "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
             "typeVersion": 1,
             "position": [
-                496,
-                832
+                448,
+                1008
             ],
             "credentials": {
                 "openAiApi": {
@@ -114,10 +114,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
             "typeVersion": 1,
             "position": [
-                32,
-                480
+                208,
+                592
             ],
-            "id": "ee151e75-5295-4d10-894f-c435dd3dd12c",
+            "id": "ed9517d4-e4af-4244-936d-b09c05b61a9e",
             "name": "OpenRouter Chat Model",
             "retryOnFail": true,
             "credentials": {
@@ -135,10 +135,10 @@
             "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
             "typeVersion": 1,
             "position": [
-                816,
-                608
+                656,
+                800
             ],
-            "id": "df5869f5-e39a-487d-8227-4e4a63c8d162",
+            "id": "872c6a5a-b66e-496e-b682-122689dfd8f1",
             "name": "OpenRouter Chat Model1",
             "credentials": {
                 "openRouterApi": {
@@ -146,6 +146,29 @@
                     "name": "OpenRouter account"
                 }
             }
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "eeeb108f-b7d8-4a3b-9353-e9fabb8b2e7c",
+                            "name": "tenant_id",
+                            "value": "={{ $json.body.tenant }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                192,
+                368
+            ],
+            "id": "5d29d3b2-b2f7-45e8-bf59-23d9a110bbdb",
+            "name": "Edit Fields"
         }
     ],
     "connections": {
@@ -153,7 +176,7 @@
             "main": [
                 [
                     {
-                        "node": "AI Agent",
+                        "node": "Edit Fields",
                         "type": "main",
                         "index": 0
                     }
@@ -221,6 +244,17 @@
                     {
                         "node": "Vector Store Tool",
                         "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Edit Fields": {
+            "main": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "main",
                         "index": 0
                     }
                 ]

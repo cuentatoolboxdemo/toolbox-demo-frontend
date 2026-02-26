@@ -1,0 +1,62 @@
+{
+    "nodes": [
+        {
+            "parameters": {},
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                0,
+                0
+            ],
+            "id": "17a29d68-e8e9-4d34-b3be-a68585116694",
+            "name": "When clicking ‘Execute workflow’"
+        },
+        {
+            "parameters": {
+                "resource": "point",
+                "operation": "scrollPoints",
+                "collectionName": {
+                    "__rl": true,
+                    "value": "toolbox-demo",
+                    "mode": "list",
+                    "cachedResultName": "toolbox-demo"
+                },
+                "filter": "",
+                "shardKey": "",
+                "requestOptions": {}
+            },
+            "type": "n8n-nodes-qdrant.qdrant",
+            "typeVersion": 1,
+            "position": [
+                208,
+                0
+            ],
+            "id": "30b5d92c-b5ce-4a72-9005-5af67bfe166d",
+            "name": "Scroll Points",
+            "credentials": {
+                "qdrantRestApi": {
+                    "id": "91T528sHVxZuUBnt",
+                    "name": "Qdrant account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "When clicking ‘Execute workflow’": {
+            "main": [
+                [
+                    {
+                        "node": "Scroll Points",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "bfbed0c3a0ef63a78f9cc0bda9704115aae84450a3d512c41f7c09fd3401c5c0"
+    }
+}

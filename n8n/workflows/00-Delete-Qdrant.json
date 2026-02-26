@@ -1,0 +1,63 @@
+{
+    "nodes": [
+        {
+            "parameters": {},
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                0,
+                0
+            ],
+            "id": "5b50c5bd-a763-41e1-a8dc-1fdbdb17962a",
+            "name": "When clicking ‘Execute workflow’"
+        },
+        {
+            "parameters": {
+                "resource": "point",
+                "operation": "deletePoints",
+                "collectionName": {
+                    "__rl": true,
+                    "value": "toolbox-demo",
+                    "mode": "list",
+                    "cachedResultName": "toolbox-demo"
+                },
+                "points": "",
+                "filter": "{\n  \"must_not\": [\n    {\n      \"key\": \"id_inexistente\",\n      \"match\": {\n        \"value\": \"valor_imposible\"\n      }\n    }\n  ]\n}\n",
+                "shardKey": "",
+                "requestOptions": {}
+            },
+            "type": "n8n-nodes-qdrant.qdrant",
+            "typeVersion": 1,
+            "position": [
+                208,
+                0
+            ],
+            "id": "f0debc95-4d09-4652-9ee6-cc00fc318e5b",
+            "name": "Delete Points",
+            "credentials": {
+                "qdrantRestApi": {
+                    "id": "91T528sHVxZuUBnt",
+                    "name": "Qdrant account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "When clicking ‘Execute workflow’": {
+            "main": [
+                [
+                    {
+                        "node": "Delete Points",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "bfbed0c3a0ef63a78f9cc0bda9704115aae84450a3d512c41f7c09fd3401c5c0"
+    }
+}
