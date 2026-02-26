@@ -51,7 +51,7 @@ export async function DELETE(
                     await fetch(webhookUrl, {
                         method: "POST", // Webhooks usually accept POST for actions even if REST semantics say DELETE
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ id: docToDelete.id, filename: docToDelete.filename })
+                        body: JSON.stringify({ id: docToDelete.id, filename: docToDelete.filename, tenant: tenantId })
                     });
                 }
             } catch (error) {

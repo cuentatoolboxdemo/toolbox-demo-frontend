@@ -1,5 +1,4 @@
 {
-    "name": "01-Ingest-Workflow",
     "nodes": [
         {
             "parameters": {
@@ -8,86 +7,180 @@
                 "responseMode": "lastNode",
                 "options": {}
             },
-            "id": "1",
+            "id": "740db1c0-ee94-4351-9766-dd0221826295",
             "name": "Webhook Ingest",
             "type": "n8n-nodes-base.webhook",
             "typeVersion": 1,
             "position": [
-                250,
-                300
+                -144,
+                -64
             ],
             "webhookId": "ingest"
+        },
+        {
+            "parameters": {
+                "operation": "pdf",
+                "binaryPropertyName": "={{ $node[\"Webhook Ingest\"].binary.file }}",
+                "options": {
+                    "joinPages": true
+                }
+            },
+            "id": "9bbf1716-127a-4ccd-a667-3e0273ea832a",
+            "name": "Read PDF",
+            "type": "n8n-nodes-base.extractFromFile",
+            "typeVersion": 1,
+            "position": [
+                304,
+                -64
+            ]
+        },
+        {
+            "parameters": {
+                "mode": "insert",
+                "qdrantCollection": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "toolbox-demo"
+                },
+                "options": {
+                    "collectionConfig": "=",
+                    "contentPayloadKey": "content",
+                    "metadataPayloadKey": "="
+                }
+            },
+            "id": "378a5aa0-4764-492e-ae56-18db132c2f7b",
+            "name": "Qdrant Vector Store",
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+            "typeVersion": 1,
+            "position": [
+                784,
+                -64
+            ],
+            "credentials": {
+                "qdrantApi": {
+                    "id": "cHqO9QDFt7H9EsOZ",
+                    "name": "QdrantApi account"
+                }
+            }
         },
         {
             "parameters": {
                 "operation": "upload",
                 "bucketName": "documents",
                 "fileName": "={{ $json.body.document_id }}.pdf",
-                "binaryPropertyName": "file"
+                "binaryPropertyName": "=file",
+                "additionalFields": {}
             },
-            "id": "2",
-            "name": "MinIO S3 Upload",
-            "type": "n8n-nodes-base.awsS3",
+            "type": "n8n-nodes-base.s3",
             "typeVersion": 1,
             "position": [
-                450,
-                300
-            ]
-        },
-        {
-            "parameters": {},
-            "id": "3",
-            "name": "Read PDF",
-            "type": "n8n-nodes-base.extractFromFile",
-            "typeVersion": 1,
-            "position": [
-                650,
-                300
-            ]
+                80,
+                -64
+            ],
+            "id": "cf377f00-04d9-46eb-b60a-6c3a6ae6b0f2",
+            "name": "Upload a file",
+            "alwaysOutputData": false,
+            "credentials": {
+                "s3": {
+                    "id": "39cMhgFsExu3SrhG",
+                    "name": "S3 account"
+                }
+            }
         },
         {
             "parameters": {
-                "chunkSize": 1000,
-                "chunkOverlap": 100
-            },
-            "id": "4",
-            "name": "Character Text Splitter",
-            "type": "@n8n/n8n-nodes-langchain.textSplitterCharacterTextSplitter",
-            "typeVersion": 1,
-            "position": [
-                850,
-                450
-            ]
-        },
-        {
-            "parameters": {
-                "model": "text-embedding-3-small"
-            },
-            "id": "5",
-            "name": "Embeddings OpenAI",
-            "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-            "typeVersion": 1,
-            "position": [
-                850,
-                600
-            ]
-        },
-        {
-            "parameters": {
-                "mode": "insert",
-                "qdrantCollection": "toolbox-demo",
                 "options": {
-                    "metadata": "={\n  \"document_id\": \"{{$json.body.document_id}}\"\n}"
+                    "batchSize": 512
                 }
             },
-            "id": "6",
-            "name": "Qdrant Vector Store",
-            "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+            "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                752,
+                160
+            ],
+            "id": "5c714227-6029-4054-85b5-a8e6468f8cf1",
+            "name": "Embeddings OpenAI1",
+            "credentials": {
+                "openAiApi": {
+                    "id": "7id7MXXFCOiXuAGJ",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsonMode": "expressionData",
+                "jsonData": "={{ $json.text }}",
+                "textSplittingMode": "custom",
+                "options": {
+                    "metadata": {
+                        "metadataValues": [
+                            {
+                                "name": "=tenant",
+                                "value": "={{ $json.body.tenant }}"
+                            },
+                            {
+                                "name": "=document_id",
+                                "value": "={{ $json.body.document_id }}"
+                            }
+                        ]
+                    }
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+            "typeVersion": 1.1,
+            "position": [
+                880,
+                160
+            ],
+            "id": "87f48f6c-7da8-4423-8363-3d0db0b7c5c5",
+            "name": "Default Data Loader"
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "d0e7b86c-1805-476f-87b9-ff1e7c92b21e",
+                            "name": "body.tenant",
+                            "value": "={{ $('Webhook Ingest').item.json.body.tenant }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "a3a3c000-a5a7-4c48-aed8-6c1457f7f5dd",
+                            "name": "body.document_id",
+                            "value": "={{ $('Webhook Ingest').item.json.body.document_id }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "includeOtherFields": true,
+                "options": {}
+            },
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                528,
+                -64
+            ],
+            "id": "90f55059-b8a6-4620-adf3-11d45b8abf01",
+            "name": "Edit Fields"
+        },
+        {
+            "parameters": {
+                "chunkSize": 512,
+                "chunkOverlap": 80,
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
             "typeVersion": 1,
             "position": [
-                850,
-                300
-            ]
+                960,
+                368
+            ],
+            "id": "b6e4954d-4251-4891-b4f9-8425937b7d5d",
+            "name": "Recursive Character Text Splitter"
         }
     ],
     "connections": {
@@ -95,36 +188,47 @@
             "main": [
                 [
                     {
-                        "node": "MinIO S3 Upload",
+                        "node": "Upload a file",
                         "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
-        "MinIO S3 Upload": {
-            "main": [
-                [
-                    {
-                        "node": "Qdrant Vector Store",
-                        "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
-        "Character Text Splitter": {
-            "ai_textSplitter": [
-                [
-                    {
-                        "node": "Read PDF",
-                        "type": "ai_textSplitter",
                         "index": 0
                     }
                 ]
             ]
         },
         "Read PDF": {
+            "main": [
+                [
+                    {
+                        "node": "Edit Fields",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Upload a file": {
+            "main": [
+                [
+                    {
+                        "node": "Read PDF",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Embeddings OpenAI1": {
+            "ai_embedding": [
+                [
+                    {
+                        "node": "Qdrant Vector Store",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Default Data Loader": {
             "ai_document": [
                 [
                     {
@@ -135,17 +239,32 @@
                 ]
             ]
         },
-        "Embeddings OpenAI": {
-            "ai_embedding": [
+        "Edit Fields": {
+            "main": [
                 [
                     {
                         "node": "Qdrant Vector Store",
-                        "type": "ai_embedding",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Recursive Character Text Splitter": {
+            "ai_textSplitter": [
+                [
+                    {
+                        "node": "Default Data Loader",
+                        "type": "ai_textSplitter",
                         "index": 0
                     }
                 ]
             ]
         }
     },
-    "settings": {}
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "bfbed0c3a0ef63a78f9cc0bda9704115aae84450a3d512c41f7c09fd3401c5c0"
+    }
 }

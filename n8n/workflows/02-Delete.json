@@ -51,7 +51,7 @@
                     "parameters": [
                         {
                             "name": "filter",
-                            "value": "={\n  \"must\": [\n    {\n      \"key\": \"document_id\",\n      \"match\": {\n        \"value\": \"{{$json.body.id}}\"\n      }\n    }\n  ]\n}"
+                            "value": "={\n  \"must\": [\n    {\n      \"key\": \"metadata.document_id\",\n      \"match\": {\n        \"value\": \"{{ $node[\\\"Webhook Delete\\\"].json.body.id }}\"\n      }\n    },\n    {\n      \"key\": \"metadata.tenant\",\n      \"match\": {\n        \"value\": \"{{ $node[\\\"Webhook Delete\\\"].json.body.tenant }}\"\n      }\n    }\n  ]\n}"
                         }
                     ]
                 },

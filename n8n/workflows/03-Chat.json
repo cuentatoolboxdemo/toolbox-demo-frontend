@@ -1,5 +1,4 @@
 {
-    "name": "03-Chat-Workflow",
     "nodes": [
         {
             "parameters": {
@@ -8,13 +7,13 @@
                 "responseMode": "lastNode",
                 "options": {}
             },
-            "id": "1",
+            "id": "196d3651-9c6a-4474-8b0b-ffebe5b8b9f7",
             "name": "Webhook Chat",
             "type": "n8n-nodes-base.webhook",
             "typeVersion": 1,
             "position": [
-                250,
-                300
+                176,
+                240
             ],
             "webhookId": "chat"
         },
@@ -25,40 +24,26 @@
                     "systemMessage": "={{ $json.body.systemPrompt }}"
                 }
             },
-            "id": "2",
+            "id": "1f208de7-fc30-4649-b12b-f116225617b8",
             "name": "AI Agent",
             "type": "@n8n/n8n-nodes-langchain.agent",
             "typeVersion": 1,
             "position": [
-                450,
-                300
-            ]
-        },
-        {
-            "parameters": {
-                "model": "gpt-4o",
-                "options": {}
-            },
-            "id": "3",
-            "name": "OpenRouter Model",
-            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-            "typeVersion": 1,
-            "position": [
-                450,
-                500
+                384,
+                240
             ]
         },
         {
             "parameters": {
                 "contextWindowLength": 10
             },
-            "id": "4",
+            "id": "1d9b650c-8d92-404b-9eac-20d26f512fb1",
             "name": "Window Buffer Memory",
             "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
             "typeVersion": 1,
             "position": [
-                550,
-                500
+                288,
+                480
             ]
         },
         {
@@ -66,41 +51,101 @@
                 "name": "document_retriever",
                 "description": "Call this tool to find factual information from the uploaded documents to answer the user's question."
             },
-            "id": "5",
+            "id": "ca06bbd5-024b-4f71-ad82-c726b08285d0",
             "name": "Vector Store Tool",
             "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
             "typeVersion": 1,
             "position": [
-                650,
-                500
+                576,
+                448
             ]
         },
         {
             "parameters": {
                 "qdrantCollection": "toolbox-demo",
-                "options": {}
+                "options": {
+                    "searchFilterJson": "{\n  \"must\": [\n    {\n      \"key\": \"metadata.tenant\",\n      \"match\": {\n        \"value\": \"{{ $('Webhook Chat').item.json.body.tenant }}\"\n      }\n    }\n  ]\n}"
+                }
             },
-            "id": "6",
+            "id": "767affd6-4a40-4a9b-bf1d-75aaa734e868",
             "name": "Qdrant Vector Store",
             "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
             "typeVersion": 1,
             "position": [
-                650,
-                650
-            ]
+                496,
+                656
+            ],
+            "credentials": {
+                "qdrantApi": {
+                    "id": "cHqO9QDFt7H9EsOZ",
+                    "name": "QdrantApi account"
+                }
+            }
         },
         {
             "parameters": {
-                "model": "text-embedding-3-small"
+                "model": "text-embedding-3-small",
+                "options": {}
             },
-            "id": "7",
+            "id": "45a773a6-c78c-4b1d-9b36-ae323b4bb22c",
             "name": "Embeddings OpenAI",
             "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
             "typeVersion": 1,
             "position": [
-                650,
-                800
-            ]
+                496,
+                832
+            ],
+            "credentials": {
+                "openAiApi": {
+                    "id": "7id7MXXFCOiXuAGJ",
+                    "name": "OpenAi account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "model": "openai/gpt-4o-mini",
+                "options": {
+                    "maxTokens": 500,
+                    "temperature": 0,
+                    "maxRetries": 2
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+            "typeVersion": 1,
+            "position": [
+                32,
+                480
+            ],
+            "id": "ee151e75-5295-4d10-894f-c435dd3dd12c",
+            "name": "OpenRouter Chat Model",
+            "retryOnFail": true,
+            "credentials": {
+                "openRouterApi": {
+                    "id": "90gZjGTtZtSVEFrQ",
+                    "name": "OpenRouter account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "model": "openai/gpt-4o-mini",
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+            "typeVersion": 1,
+            "position": [
+                816,
+                608
+            ],
+            "id": "df5869f5-e39a-487d-8227-4e4a63c8d162",
+            "name": "OpenRouter Chat Model1",
+            "credentials": {
+                "openRouterApi": {
+                    "id": "90gZjGTtZtSVEFrQ",
+                    "name": "OpenRouter account"
+                }
+            }
         }
     ],
     "connections": {
@@ -110,17 +155,6 @@
                     {
                         "node": "AI Agent",
                         "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
-        "OpenRouter Model": {
-            "ai_languageModel": [
-                [
-                    {
-                        "node": "AI Agent",
-                        "type": "ai_languageModel",
                         "index": 0
                     }
                 ]
@@ -169,7 +203,33 @@
                     }
                 ]
             ]
+        },
+        "OpenRouter Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenRouter Chat Model1": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Vector Store Tool",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
         }
     },
-    "settings": {}
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "bfbed0c3a0ef63a78f9cc0bda9704115aae84450a3d512c41f7c09fd3401c5c0"
+    }
 }
