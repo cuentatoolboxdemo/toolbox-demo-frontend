@@ -15,40 +15,82 @@ export type Tenant = {
 };
 
 export const TENANTS: Record<string, Tenant> = {
-  calzedonia: {
-    slug: "calzedonia",
-    name: "Calzedonia AI Assistant",
-    displayName: "Calzedonia",
-    theme: {
-      primary: "#000000",       // Black
-      primaryText: "#ffffff",   // White
-      avatarGlow: "#4b5563",    // Gray-600
-      avatarPulse: "#000000",   // Black
-      ring: "#d1d5db",          // Gray-300
-    },
-  },
-  sabores: {
-    slug: "sabores",
-    name: "Sabores AI Assistant",
-    displayName: "Sabores",
-    theme: {
-      primary: "#ea580c",       // Orange-600
-      primaryText: "#ffffff",
-      avatarGlow: "#f97316",    // Orange-500
-      avatarPulse: "#c2410c",   // Orange-700
-      ring: "#fdba74",          // Orange-300
-    },
-  },
   ide_marketing: {
     slug: "ide_marketing",
     name: "IDE Marketing Assistant",
     displayName: "IDE Marketing",
     theme: {
-      primary: "#2563eb",       // Blue-600
-      primaryText: "#ffffff",
-      avatarGlow: "#3b82f6",    // Blue-500
-      avatarPulse: "#4f46e5",   // Indigo-600
-      ring: "#93c5fd",          // Blue-300
+      primary: "#C00B00",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#FF1A0D",
+      avatarPulse: "#8B0000",
+      ring: "#FF6B6B",
+      logoUrl: "/icons/IDE Marketing_idNTrdiV4p_1.png",
+    },
+  },
+  calzedonia: {
+    slug: "calzedonia",
+    name: "Calzedonia AI Assistant",
+    displayName: "Calzedonia",
+    theme: {
+      primary: "#8F2C4B",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#B33D62",
+      avatarPulse: "#6B1E36",
+      ring: "#D4708F",
+      logoUrl: "/icons/Calzedonia_idFVQbCbFh_1.png",
+    },
+  },
+  sabor_a_espana: {
+    slug: "sabor_a_espana",
+    name: "Sabor a España Assistant",
+    displayName: "Sabor a España",
+    theme: {
+      primary: "#FF9C00",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#FFB733",
+      avatarPulse: "#D98200",
+      ring: "#FFD080",
+      logoUrl: "/icons/sabor1.png",
+    },
+  },
+  segurcaixa_adeslas: {
+    slug: "segurcaixa_adeslas",
+    name: "SegurCaixa Adeslas Assistant",
+    displayName: "SegurCaixa Adeslas",
+    theme: {
+      primary: "#0F77AE",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#1A9AD9",
+      avatarPulse: "#0A5A82",
+      ring: "#6BB8D9",
+      logoUrl: "/icons/segurcaixa.png",
+    },
+  },
+  nex: {
+    slug: "nex",
+    name: "NEX Assistant",
+    displayName: "NEX",
+    theme: {
+      primary: "#39FF14",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#66FF44",
+      avatarPulse: "#2ACC10",
+      ring: "#80FF66",
+      logoUrl: "/icons/nex.png",
+    },
+  },
+  rci: {
+    slug: "rci",
+    name: "RCI Assistant",
+    displayName: "RCI",
+    theme: {
+      primary: "#F47216",
+      primaryText: "#FFFFFF",
+      avatarGlow: "#FF8C3A",
+      avatarPulse: "#C95C10",
+      ring: "#FFB380",
+      logoUrl: "/icons/rci.png",
     },
   },
 };
