@@ -26,8 +26,8 @@
 
 ## Category: Visual Polish (VIS)
 - [ ] **VIS-01**: Directory page displays 6 tenant cards in a 2x3 grid with brand logos and colors.
-- [ ] **VIS-02**: Real brand logos sourced and displayed in directory cards, chat avatar center, and admin header.
-- [ ] **VIS-03**: Three new tenants added (segurcaixa_adeslas, rci_renault, nex_michelin) with full theme configuration.
+- [x] **VIS-02**: Real brand logos sourced and displayed in directory cards, chat avatar center, and admin header.
+- [x] **VIS-03**: Three new tenants added (segurcaixa_adeslas, rci_renault, nex_michelin) with full theme configuration.
 - [ ] **VIS-04**: Chat avatar uses a particle constellation effect with floating particles orbiting the center logo.
 - [ ] **VIS-05**: Particle avatar reacts to state changes (idle: gentle drift, thinking: accelerate and pulse).
 - [ ] **VIS-06**: All user-facing views feel premium, polished, and demo-ready.

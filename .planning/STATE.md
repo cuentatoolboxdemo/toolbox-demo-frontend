@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-23)
 
 **Core value:** Employees get instant, context-aware answers from company documents through a familiar chat UI — installable on their phone like any other app.
-**Current focus:** All phases complete
+**Current focus:** Phase 12 — User View Visual Polish
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-02-25 — Milestone v1.1 started
+Phase: 12-user-view-visual-polish
+Plan: 1/3 complete
+Status: In Progress
+Last activity: 2026-02-26 — Plan 12-01 complete
 
-Progress: [          ] 0%
+Progress: [##        ] 33%
 
 ## Performance Metrics
 
@@ -36,6 +36,10 @@ Progress: [          ] 0%
 - Trend: improving
 
 *Updated after each plan completion*
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| 12-user-view-visual-polish | 1/3 | 3min | 3min |
 
 ## Accumulated Context
 
@@ -75,6 +79,7 @@ Recent decisions affecting current work:
 - [Phase 03-admin-interface]: UploadZone as standalone component with onUploadSuccess prop — keeps AdminPage as state owner, UploadZone as pure uploader
 - [Phase 03-admin-interface]: getDropzoneClassName() helper consolidates three conditional class sets (uploading, dragging, default) into readable function
 - [Phase 03-admin-interface]: Plain textarea with Tailwind classes for SystemPromptEditor — no Shadcn textarea component needed
+- [Phase 12-user-view-visual-polish]: Renamed sabores slug to sabor_a_espana; TENANTS ordering matches directory display order; logoUrl uses browser path /icons/filename
 
 ### Pending Todos
 
@@ -86,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-23
-Stopped at: Completed 03-03-PLAN.md — SystemPromptEditor with localStorage persistence, full admin panel human-verified. All phases complete.
+Last session: 2026-02-26
+Stopped at: Completed 12-01-PLAN.md — Expanded TENANTS to 6 branded tenants (ide_marketing, calzedonia, sabor_a_espana, segurcaixa_adeslas, nex, rci)
 Resume file: None
