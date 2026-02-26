@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-23)
 ## Current Position
 
 Phase: 12-user-view-visual-polish
-Plan: 1/3 complete
+Plan: 2/3 complete
 Status: In Progress
-Last activity: 2026-02-26 — Plan 12-01 complete
+Last activity: 2026-02-26 — Plan 12-02 complete
 
-Progress: [##        ] 33%
+Progress: [####      ] 67%
 
 ## Performance Metrics
 
@@ -39,7 +39,7 @@ Progress: [##        ] 33%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 12-user-view-visual-polish | 1/3 | 3min | 3min |
+| 12-user-view-visual-polish | 2/3 | 8min | 4min |
 
 ## Accumulated Context
 
@@ -80,6 +80,9 @@ Recent decisions affecting current work:
 - [Phase 03-admin-interface]: getDropzoneClassName() helper consolidates three conditional class sets (uploading, dragging, default) into readable function
 - [Phase 03-admin-interface]: Plain textarea with Tailwind classes for SystemPromptEditor — no Shadcn textarea component needed
 - [Phase 12-user-view-visual-polish]: Renamed sabores slug to sabor_a_espana; TENANTS ordering matches directory display order; logoUrl uses browser path /icons/filename
+- [Phase 12-user-view-visual-polish]: Used <img> tag with eslint-disable instead of next/image for dynamic logo paths — avoids domain/dimension config complexity
+- [Phase 12-user-view-visual-polish]: min-w-0 required on flex-1 wrapper for CSS truncate to work inside flexbox containers
+- [Phase 12-user-view-visual-polish]: getTenant() called at component body level (synchronous map lookup, no side effect needed)
 
 ### Pending Todos
 
@@ -92,5 +95,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-26
-Stopped at: Completed 12-01-PLAN.md — Expanded TENANTS to 6 branded tenants (ide_marketing, calzedonia, sabor_a_espana, segurcaixa_adeslas, nex, rci)
+Stopped at: Completed 12-02-PLAN.md — Directory page 2x3 branded grid with logos; Admin header shows tenant logo and name
 Resume file: None

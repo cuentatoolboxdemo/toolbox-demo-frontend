@@ -106,11 +106,11 @@ Plans:
 **Goal:** Expand to 6 branded tenants with real logos and brand colors, update directory to 2x3 grid, and extend branding to admin header. Keep existing avatar unchanged per user decision.
 **Depends on:** Phase 11
 **Requirements:** [VIS-01, VIS-02, VIS-03, VIS-04, VIS-05, VIS-06]
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 12-01-PLAN.md — Tenant config expansion (6 tenants, brand colors, logo URLs)
-- [ ] 12-02-PLAN.md — Directory 2x3 branded grid & admin header logo
+- [x] 12-01-PLAN.md — Tenant config expansion (6 tenants, brand colors, logo URLs)
+- [x] 12-02-PLAN.md — Directory 2x3 branded grid & admin header logo
 - [ ] 12-03-PLAN.md — Visual verification checkpoint (all views demo-ready)
 
 ### Phase 13: Document ingestion improvements & admin changes
