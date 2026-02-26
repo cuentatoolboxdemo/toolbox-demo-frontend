@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -12,7 +13,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl space-y-8">
+      <div className="w-full max-w-4xl space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">Toolbox AI</h1>
           <p className="text-lg text-gray-500">Selecciona un asistente para comenzar</p>
@@ -28,10 +29,18 @@ export default function Home() {
               <Card className="h-full transition-all duration-200 hover:shadow-md hover:border-gray-400 group-hover:-translate-y-1">
                 <CardHeader className="flex flex-row items-center space-y-0 gap-4">
                   <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-50 transition-colors">
-                    <Bot className="w-6 h-6 text-gray-600 group-hover:text-blue-600" />
+                    {tenant.theme.logoUrl ? (
+                      <img
+                        src={tenant.theme.logoUrl}
+                        alt={tenant.displayName}
+                        className="w-10 h-10 object-contain rounded-lg"
+                      />
+                    ) : (
+                      <Bot className="w-6 h-6 text-gray-600 group-hover:text-blue-600" />
+                    )}
                   </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-base">{tenant.displayName}</CardTitle>
+                  <div className="flex-1 min-w-0">
+                    <CardTitle className="text-base truncate">{tenant.displayName}</CardTitle>
                     <CardDescription className="text-xs line-clamp-1">{tenant.name}</CardDescription>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
