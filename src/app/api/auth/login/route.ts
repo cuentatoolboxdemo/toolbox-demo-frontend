@@ -7,8 +7,19 @@ export async function POST(request: Request) {
         const { password } = await request.json();
 
         let role = "";
-        if (password === "demo123") role = "admin";
-        else if (password === "user123") role = "user";
+        const adminPassword = process.env.ADMIN_PASSWORD;
+        const userPassword = process.env.USER_PASSWORD;
+
+        if (!adminPassword || !userPassword) {
+            console.error("Authentication environment variables not configured.");
+            return NextResponse.json(
+                { success: false, error: "Server misconfiguration" },
+                { status: 500 }
+            );
+        }
+
+        if (password === adminPassword) role = "admin";
+        else if (password === userPassword) role = "user";
 
         if (role) {
             const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours

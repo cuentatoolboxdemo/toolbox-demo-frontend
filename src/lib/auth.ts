@@ -1,9 +1,15 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const JWT_SECRET_KEY = process.env.JWT_SECRET || "toolbox-demo-secret-key-123456";
-const key = new TextEncoder().encode(JWT_SECRET_KEY);
+function getSecretKey() {
+    const JWT_SECRET_KEY = process.env.JWT_SECRET;
+    if (!JWT_SECRET_KEY) {
+        throw new Error("JWT_SECRET environment variable is not defined");
+    }
+    return new TextEncoder().encode(JWT_SECRET_KEY);
+}
 
 export async function encrypt(payload: any) {
+    const key = getSecretKey();
     return await new SignJWT(payload)
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
@@ -13,6 +19,7 @@ export async function encrypt(payload: any) {
 
 export async function decrypt(token: string): Promise<any> {
     try {
+        const key = getSecretKey();
         const { payload } = await jwtVerify(token, key, {
             algorithms: ["HS256"],
         });
