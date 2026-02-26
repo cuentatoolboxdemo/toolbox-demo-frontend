@@ -6,77 +6,73 @@
 <domain>
 ## Phase Boundary
 
-Elevate the entire user-facing experience: expand the tenant directory to 6 branded entries with real logos, inject real brand identity (logos + colors) across all views (directory, chat, admin), and replace the current animated avatar with a stunning particle-constellation effect that delivers a WOW moment in demos.
-
-Out of scope: document ingestion changes, admin functionality changes, new n8n workflows, authentication changes.
+Expand the tenant roster from 3 to 6 branded tenants, update the directory page to show a 2×3 grid with real logos, and ensure the admin and chat views reflect each tenant's logo and brand colors. No new capabilities (no new avatar, no new features).
 
 </domain>
 
 <decisions>
 ## Implementation Decisions
 
-### Directory page (root `/`)
-- 6 tenants displayed in a 2x3 grid (2 rows, 3 columns)
-- Each card shows the real brand logo prominently, brand name, and assistant subtitle
-- Cards use brand colors for hover effects and accents
-- The 6 tenants in order: IDE Marketing, Sabor a España, Calzedonia, Segurcaixa Adeslas, RCI (grupo Renault), NEX (grupo Michelín)
-- Overall page should feel premium and polished — this is the first impression for demo clients
+### Tenant Roster & Ordering
+- Expand from 3 tenants to 6 tenants.
+- Rename the existing "Sabores" tenant to **"Sabor a España"** (slug: `sabor_a_espana`).
+- Add 3 new tenants: **SegurCaixa Adeslas**, **NEX (grupo Michelín)**, **RCI (grupo Renault)**.
+- Display order on the directory grid (left-to-right, top-to-bottom):
+  1. IDE Marketing
+  2. Calzedonia
+  3. Sabor a España
+  4. SegurCaixa Adeslas
+  5. NEX
+  6. RCI
 
-### New tenants to add
-- **Segurcaixa Adeslas** — Spanish health insurance. Slug: `segurcaixa_adeslas`
-- **RCI (grupo Renault)** — Renault group financial services. Slug: `rci_renault`
-- **NEX (grupo Michelín)** — Michelin group tire tech. Slug: `nex_michelin`
-- Each needs: theme colors, logo, display name, assistant name in `tenants.ts`
-- n8n webhooks and system prompts for these 3 are NOT part of this phase — they get placeholder/stub config
+### Brand Colors (from provided color reference images)
+- **IDE Marketing:** primary `#C00B00` (Guardsman Red), secondary `#000000` (Black), text `#FFFFFF`
+- **Calzedonia:** primary `#8F2C4B` (Camelot), secondary `#2B313D` (Ebony Clay), text `#FFFFFF`
+- **Sabor a España:** primary `#FF9C00` (Orange Peel), secondary `#D9B069` (Apache), accent `#0044CC` (Science Blue), text `#FFFFFF`
+- **SegurCaixa Adeslas:** primary `#0F77AE` (Denim), secondary `#333333` (Mine Shaft), text `#FFFFFF`
+- **NEX:** primary `#39FF14` (Neon Green — from logo), secondary `#333333` (Dark Gray — from logo background), text `#FFFFFF`
+- **RCI:** primary `#F47216` (Ecstasy/Orange), secondary `#006C8B` (Blue Lagoon), text `#FFFFFF`
 
-### Brand identity sourcing
-- Use real logos for all 6 brands — source from the web (official brand assets, Wikipedia SVGs, or high-quality PNGs)
-- Logos appear in: directory card, chat avatar center, admin header
-- Brand colors derived from each company's actual brand guidelines
-- Store logo files in `/public/logos/` as optimized images (PNG or SVG)
+### Logo Assets (all in `public/icons/`)
+- **IDE Marketing:** `IDE Marketing_idNTrdiV4p_1.png`
+- **Calzedonia:** `Calzedonia_idFVQbCbFh_1.png`
+- **Sabor a España:** `sabor1.png`
+- **SegurCaixa Adeslas:** `segurcaixa.png`
+- **NEX:** `nex.png`
+- **RCI:** `rci.png`
 
-### Chat avatar — Particle constellation WOW effect
-- Replace current ring-based animation with a particle constellation system
-- Floating particles that orbit the center logo, like a galaxy or neural network visualization
-- Particles react to state: idle (gentle drift), thinking (accelerate, pulse, expand), new message (burst then settle)
-- Brand-colored particles — each tenant's constellation uses their brand palette
-- The logo sits at the center of the constellation, clearly visible
-- Same shrink behavior as current: large on empty chat, scales down as messages appear
-- Must be performant on mobile (limit particle count, use CSS transforms or canvas)
+### Directory Grid
+- Current layout is 3 cards in a single row — user LIKES this card style.
+- Expand to 2 rows × 3 columns (6 cards total).
+- Each card must show its brand logo.
+- Long tenant names (e.g. "SegurCaixa Adeslas") must NOT wrap to 2 lines — use text sizing / truncation as needed.
+- Card design remains identical to current style; no redesign.
 
-### Logo placement across views
-- **Directory card:** Logo as the primary visual element on each card (replaces the generic Bot icon)
-- **Chat view:** Logo centered in the particle constellation avatar
-- **Admin header:** Logo next to "Toolbox Admin" title, brand-colored
+### Chat & Admin Branding
+- The chat and admin screens must reflect the active tenant's logo and brand colors (header, avatar glow, message bubbles, etc.).
+- NO changes to the avatar animation (keep the current animated avatar as-is).
+- NO additional branding beyond what already exists in the chat/admin views for the 3 current tenants — just extend the same pattern to the 3 new tenants.
 
 ### Claude's Discretion
-- Exact particle count, orbit paths, and physics
-- Directory card layout details (padding, shadows, typography)
-- Logo sizing and aspect ratio handling per view
-- How to handle logos that are text-heavy vs icon-only
-- Animation performance optimization strategy (CSS vs canvas vs hybrid)
-- Exact brand color hex values (research from official sources)
+- Exact slug naming for the new tenants (suggested: `segurcaixa_adeslas`, `nex`, `rci`).
+- Derived theme colors (avatarGlow, avatarPulse, ring) for the new tenants — derive sensibly from the primary brand color.
+- Whether to rename logo files to cleaner names or keep existing filenames.
 
 </decisions>
 
 <specifics>
 ## Specific Ideas
 
-- "Quiero un efecto WOW verdadero" — the avatar animation is the centerpiece of the demo experience
-- Particle constellation direction chosen: floating particles orbiting like a galaxy or neural network
-- The current avatar concept (element that shrinks with messages) is good — keep that behavior, just execute it at a much higher visual level
-- "Para cada marca se vea su Logo real" — real logos everywhere, not generic icons
-- This is a demo app for potential clients — first impressions matter enormously
-- 2x3 grid for directory is non-negotiable (6 tenants, clean layout)
+- The user explicitly said "las tarjetas las quiero igual que ahora" — do NOT redesign the card component.
+- The user explicitly said "NO" to changing the avatar — keep the current AnimatedAvatar component unchanged.
+- The user explicitly said "NO" to additional branding in chat/admin beyond extending existing patterns to new tenants.
 
 </specifics>
 
 <deferred>
 ## Deferred Ideas
 
-- n8n webhook configuration for the 3 new tenants — Phase 13 (document ingestion & admin)
-- System prompts for new tenants — Phase 13
-- Document data files for new tenants — Phase 13
+None — discussion stayed within phase scope.
 
 </deferred>
 
