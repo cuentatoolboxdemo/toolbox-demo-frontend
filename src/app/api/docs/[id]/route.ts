@@ -47,12 +47,17 @@ export async function DELETE(
             // Attempt to hit n8n webhook to delete from vector store
             try {
                 const webhookUrl = process.env.NEXT_PUBLIC_DELETE_WEBHOOK_URL || process.env.DELETE_WEBHOOK_URL;
+                console.log("Attempting to call delete webhook:", webhookUrl);
+
                 if (webhookUrl) {
-                    await fetch(webhookUrl, {
+                    const response = await fetch(webhookUrl, {
                         method: "POST", // Webhooks usually accept POST for actions even if REST semantics say DELETE
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ id: docToDelete.id, filename: docToDelete.filename, tenant: tenantId })
                     });
+                    console.log("n8n response status:", response.status);
+                } else {
+                    console.warn("No DELETE_WEBHOOK_URL found in environment variables");
                 }
             } catch (error) {
                 console.warn("Failed to notify n8n of deletion, continuing with local cleanup...", error);
