@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,6 +8,7 @@ import { UploadZone } from "@/components/admin/UploadZone";
 import { SystemPromptEditor } from "@/components/admin/SystemPromptEditor";
 import { Trash2, Home } from "lucide-react";
 import Link from "next/link";
+import { getTenant } from "@/lib/tenants";
 
 type DocItem = { id: string; filename: string; uploadedAt: string };
 
@@ -27,6 +29,8 @@ export function AdminPage({
   const [error, setError] = useState("");
   const [docs, setDocs] = useState<DocItem[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const tenantObj = getTenant(tenantId);
 
   useEffect(() => {
     if (authed) {
@@ -76,7 +80,7 @@ export function AdminPage({
   }
 
   async function handleDelete(id: string) {
-    // Optimistic UI update could be done, but let's just do it sequentially 
+    // Optimistic UI update could be done, but let's just do it sequentially
     // to ensure it actually deleted
     try {
       const res = await fetch(`/api/docs/${id}?tenantId=${tenantId}`, { method: "DELETE" });
@@ -118,7 +122,14 @@ export function AdminPage({
           <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
             <Home className="w-5 h-5" />
           </Link>
-          <h1 className="text-lg font-semibold">Toolbox Admin</h1>
+          {tenantObj?.theme.logoUrl && (
+            <img
+              src={tenantObj.theme.logoUrl}
+              alt={tenantObj.displayName}
+              className="w-8 h-8 object-contain"
+            />
+          )}
+          <h1 className="text-lg font-semibold">{tenantObj?.displayName ?? 'Toolbox'} Admin</h1>
         </div>
         <Button variant="outline" size="sm" onClick={handleLogout}>
           Logout
