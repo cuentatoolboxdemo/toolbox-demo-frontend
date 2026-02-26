@@ -103,15 +103,15 @@ Plans:
 
 ### Phase 12: User View Visual Polish
 
-**Goal:** Elevate user-facing experience to demo-ready quality: expand to 6 branded tenants with real logos, redesign directory as premium 2x3 grid, and replace avatar with particle constellation WOW effect.
+**Goal:** Expand to 6 branded tenants with real logos and brand colors, update directory to 2x3 grid, and extend branding to admin header. Keep existing avatar unchanged per user decision.
 **Depends on:** Phase 11
 **Requirements:** [VIS-01, VIS-02, VIS-03, VIS-04, VIS-05, VIS-06]
 **Plans:** 3 plans
 
 Plans:
-- [ ] 12-01-PLAN.md — Tenant config expansion & logo assets (6 tenants, brand colors, logos)
-- [ ] 12-02-PLAN.md — Particle constellation avatar (canvas-based WOW effect)
-- [ ] 12-03-PLAN.md — Directory 2x3 branded grid & admin header logo
+- [ ] 12-01-PLAN.md — Tenant config expansion (6 tenants, brand colors, logo URLs)
+- [ ] 12-02-PLAN.md — Directory 2x3 branded grid & admin header logo
+- [ ] 12-03-PLAN.md — Visual verification checkpoint (all views demo-ready)
 
 ### Phase 13: Document ingestion improvements & admin changes
 
