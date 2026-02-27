@@ -90,7 +90,7 @@ export const TENANTS: Record<string, Tenant> = {
       avatarGlow: "#FFE680",
       avatarPulse: "#CCAA00",
       ring: "#000000",
-      logoUrl: "/icons/Renault Group_idMzVJc1NV_4.png",
+      logoUrl: "/icons/Renault Group_idyA4uV4ea_2.png",
     },
   },
 };
