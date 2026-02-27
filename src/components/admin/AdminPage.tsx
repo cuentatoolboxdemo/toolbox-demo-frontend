@@ -117,24 +117,45 @@ export function AdminPage({
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="flex items-center justify-between px-6 py-4 border-b">
-        <div className="flex items-center gap-4">
-          <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Home className="w-5 h-5" />
-          </Link>
-          {tenantObj?.theme.logoUrl && (
-            <img
-              src={tenantObj.theme.logoUrl}
-              alt={tenantObj.displayName}
-              className="w-8 h-8 object-contain"
-            />
-          )}
-          <h1 className="text-lg font-semibold">{tenantObj?.displayName ?? 'Toolbox'} Admin</h1>
-        </div>
-        <Button variant="outline" size="sm" onClick={handleLogout}>
-          Logout
-        </Button>
-      </header>
+      {tenantId === "sabor_a_espana" ? (
+        <header className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-[#FF9C00] to-[#E58C00] text-white shadow-md">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-white/80 hover:text-white transition-colors">
+              <Home className="w-5 h-5" />
+            </Link>
+            {tenantObj?.theme.logoUrl && (
+              <img
+                src={tenantObj.theme.logoUrl}
+                alt={tenantObj.displayName}
+                className="h-10 w-auto object-contain bg-white rounded-md p-1 drop-shadow-sm"
+              />
+            )}
+            <h1 className="text-lg font-semibold drop-shadow-sm">Panel de Administración</h1>
+          </div>
+          <Button variant="secondary" size="sm" onClick={handleLogout} className="text-[#FF9C00] hover:text-[#E58C00] font-semibold border-none shadow-sm">
+            Logout
+          </Button>
+        </header>
+      ) : (
+        <header className="flex items-center justify-between px-6 py-4 border-b">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Home className="w-5 h-5" />
+            </Link>
+            {tenantObj?.theme.logoUrl && (
+              <img
+                src={tenantObj.theme.logoUrl}
+                alt={tenantObj.displayName}
+                className="w-8 h-8 object-contain"
+              />
+            )}
+            <h1 className="text-lg font-semibold">{tenantObj?.displayName ?? 'Toolbox'} Admin</h1>
+          </div>
+          <Button variant="outline" size="sm" onClick={handleLogout}>
+            Logout
+          </Button>
+        </header>
+      )}
       <main className="max-w-2xl mx-auto px-6 py-8 flex flex-col gap-10">
         <section>
           <h2 className="text-base font-semibold mb-4">Document Upload</h2>

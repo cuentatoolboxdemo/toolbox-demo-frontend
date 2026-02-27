@@ -12,11 +12,14 @@ export default function Home() {
   const [selectedTenant, setSelectedTenant] = useState<Tenant | null>(null);
 
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900">Toolbox AI</h1>
-          <p className="text-lg text-gray-500">Selecciona un asistente para comenzar</p>
+    <main
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{ background: 'linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%)' }}
+    >
+      <div className="w-full max-w-4xl space-y-12">
+        <div className="text-center space-y-4 flex flex-col items-center">
+          <img src="/icons/Toolbox_white.svg" alt="Toolbox AI" className="h-12 w-auto drop-shadow-md" />
+          <p className="text-lg text-white/90 font-medium tracking-wide drop-shadow-sm">Selecciona un asistente para comenzar</p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
